@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Choco's - Indulge in Sweetness</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&family=Noto+Sans:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <header class="header">
+        <button class="hamburger-btn" aria-label="Open menu">
+            <svg width="100%" height="100%" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M3 12H21M3 6H21M3 18H21" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </button>
+        
+        <div class="logo-container">
+            <img src="images/logo.png" alt="Choco's Logo" class="logo">
+        </div>
+        
+        <div class="header-controls">
+            <button class="cart-btn" aria-label="Shopping cart">
+                <svg width="100%" height="100%" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M9 22C9.55228 22 10 21.5523 10 21C10 20.4477 9.55228 20 9 20C8.44772 20 8 20.4477 8 21C8 21.5523 8.44772 22 9 22Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M20 22C20.5523 22 21 21.5523 21 21C21 20.4477 20.5523 20 20 20C19.4477 20 19 20.4477 19 21C19 21.5523 19.4477 22 20 22Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M1 1H5L7.68 14.39C7.77144 14.8504 8.02191 15.264 8.38755 15.5583C8.75318 15.8526 9.2107 16.009 9.68 16H19.4C19.8693 16.009 20.3268 15.8526 20.6925 15.5583C21.0581 15.264 21.3086 14.8504 21.4 14.39L23 6H6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span class="cart-badge" id="cartBadge">0</span>
+            </button>
+            
+            <a href="tel:+96170447434" class="phone-link" aria-label="Call us">
+                <svg width="100%" height="100%" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M22 16.92V19.92C22.0011 20.1985 21.9441 20.4742 21.8325 20.7293C21.7209 20.9844 21.5573 21.2136 21.3521 21.4019C21.1469 21.5902 20.9046 21.7335 20.6407 21.8227C20.3769 21.9119 20.0973 21.9454 19.82 21.92C16.7428 21.5856 13.787 20.5341 11.19 18.85C8.77382 17.3146 6.72533 15.2661 5.18999 12.85C3.49997 10.2412 2.44824 7.27099 2.11999 4.18C2.09461 3.90347 2.12787 3.62476 2.21649 3.36162C2.30512 3.09849 2.44756 2.85669 2.63476 2.6518C2.82196 2.44691 3.0498 2.28335 3.30351 2.17137C3.55722 2.05939 3.83149 2.00152 4.10999 2H7.10999C7.59522 1.99522 8.06574 2.16708 8.43376 2.48353C8.80178 2.79999 9.04201 3.23945 9.10999 3.72C9.23662 4.68007 9.47144 5.62273 9.80999 6.53C9.94454 6.88792 9.97348 7.27675 9.89381 7.65343C9.81415 8.03011 9.62976 8.37754 9.35999 8.65L8.08999 9.92C9.51355 12.4135 11.5865 14.4865 14.08 15.91L15.35 14.64C15.6225 14.3702 15.9699 14.1858 16.3466 14.1062C16.7233 14.0265 17.1121 14.0555 17.47 14.19C18.3773 14.5286 19.3199 14.7634 20.28 14.89C20.7658 14.9585 21.2094 15.2032 21.5265 15.5775C21.8437 15.9518 22.0122 16.4296 22 16.92Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </a>
+        </div>
+    </header>
+
+ 
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero" style="background-image: url('images/rest.png');">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1 class="hero-title">INDULGE IN SWEETNESS</h1>
+            <p class="hero-subtitle">Get ready for a flavor explosion</p>
+            <div class="hero-actions">
+                <button class="menu-btn" aria-label="View our menu">
+                    <span class="menu-btn-text">View Menu</span>
+                    <svg class="menu-btn-icon" width="100%" height="100%" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
+                <button class="contact-btn" aria-label="Contact us">
+                    <span class="contact-btn-text">Contact Us</span>
+                    <svg class="contact-btn-icon" width="100%" height="100%" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M21 10.5V6.75C21 5.23122 19.7688 4 18.25 4H5.75C4.23122 4 3 5.23122 3 6.75V17.25C3 18.7688 4.23122 20 5.75 20H18.25C19.7688 20 21 18.7688 21 17.25V13.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M7 12L12 15L17 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </section>
+       <!-- Featured Section -->
+       <section class="featured-section">
+        <h2 class="featured-header">Best Seller</h2>
+        <div class="featured-carousel" id="featuredCarousel">
+          <button class="featured-arrow featured-arrow--left" id="featuredArrowLeft" aria-label="Previous">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none"><path d="M15 19l-7-7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="featured-slide active">
+            <img src="images/pistashiobg.png" alt="Pistachio Dream" class="featured-slide__img" loading="lazy">
+            <div class="featured-slide__name">Croissant L Choco</div>
+          </div>
+          <div class="featured-slide">
+            <img src="images/specialchocopan.png" alt="Special Choco Pan" class="featured-slide__img" loading="lazy">
+            <div class="featured-slide__name">Special Choco Pan</div>
+          </div>
+          <div class="featured-slide">
+            <img src="images/Eclaire Pyramid.png" alt="Eclaire Pyramid" class="featured-slide__img" loading="lazy">
+            <div class="featured-slide__name">Eclaire Pyramid</div>
+          </div>
+          <button class="featured-arrow featured-arrow--right" id="featuredArrowRight" aria-label="Next">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none"><path d="M9 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </div>
+    </section>
+    <div class="section-separator"></div>
+    <nav class="category-nav">
+        <div class="category-nav__container">
+            <a class="category-tab" href="#desserts" id="tab-desserts">Desserts</a>
+            <a class="category-tab" href="#crepes" id="tab-crepes">Crepes</a>
+            <a class="category-tab" href="#cups" id="tab-cups">Cups</a>
+            <a class="category-tab" href="#sticks" id="tab-sticks">Sticks</a>
+            <a class="category-tab" href="#ice-cream" id="tab-ice-cream">Ice Cream</a>
+            <a class="category-tab" href="#drinks" id="tab-drinks">Drinks</a>
+            <a class="category-tab" href="#add-ons" id="tab-add-ons">Add-ons</a>
+        </div>
+    </nav>
+    <main class="menu-container">
+        <div class="menu-sections" id="menuSections">
+            <section class="menu-section" data-category="desserts" id="desserts">
+                <div class="menu-section__header">
+                    <h2 class="menu-section__title">Desserts</h2>
+                    <button class="menu-section__toggle" aria-label="Toggle section">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M6 8L10 12L14 8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                </div>
+                <div class="menu-items">
+                    <article class="menu-item">
+                        <img src="images/pistashiobg.png" alt="Chocolate Lava Cake" class="menu-item__image" loading="lazy">
+                        <div class="menu-item__content">
+                            <div class="menu-item__header">
+                                <h3 class="menu-item__name">Croissant L Choco</h3>
+                            </div>
+                            <p class="menu-item__description">Warm, gooey chocolate cake with a molten center.</p>
+                            <div class="menu-item__footer">
+                                <span class="menu-item__price">$8.99</span>
+                            </div>
+                        </div>
+                    </article>
+                    <article class="menu-item">
+                        <img src="images/specialchocopan.png" alt="Special Choco Pan" class="menu-item__image" loading="lazy">
+                        <div class="menu-item__content">
+                            <div class="menu-item__header">
+                                <h3 class="menu-item__name">Special Choco Pan</h3>
+                            </div>
+                            <p class="menu-item__description">Creamy cheesecake with fresh strawberries.</p>
+                            <div class="menu-item__footer">
+                                <span class="menu-item__price">$7.99</span>
+                            </div>
+                        </div>
+                    </article>
+                    <article class="menu-item">
+                        <img src="images/Eclaire Pyramid.png" alt="Eclairs" class="menu-item__image" loading="lazy">
+                        <div class="menu-item__content">
+                            <div class="menu-item__header">
+                                <h3 class="menu-item__name">Eclaire Pyramid</h3>
+                            </div>
+                            <p class="menu-item__description">Classic Italian dessert with coffee and mascarpone.</p>
+                            <div class="menu-item__footer">
+                                <span class="menu-item__price">$9.99</span>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </section>
+            <section class="menu-section closed" data-category="crepes" id="crepes">
+                <div class="menu-section__header">
+                    <h2 class="menu-section__title">Crepes</h2>
+                    <button class="menu-section__toggle" aria-label="Toggle section">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M6 8L10 12L14 8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                </div>
+                <div class="menu-items">
+                    <article class="menu-item">
+                        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuC2UNdCbsaFjNGIatXMKCyNnH_zQdjAN8BBJg1q8XeDTAu8bJSqe7BmvzLsDzu6_v9wX51cVUP3SrfgmJNbc6w9tU6GALOfLDDo8iSpL7npLpvzFT5jdwOIlH0ZJeb-nDTFzhqLdrjv77c4K5w82fHg4IHPSRgKWKbZlgpNoV7avC68FksiCSA2qAlUwAX3M0uUYL831MM2_NqJOhUoqb7IT3gK5HP2zi3jTX9dtitv-1naxXoV32U0SMsEgWnuKX5abcnHTmbSS3Ta" alt="Nutella Banana Crepe" class="menu-item__image" loading="lazy">
+                        <div class="menu-item__content">
+                            <div class="menu-item__header">
+                                <h3 class="menu-item__name">Nutella Banana Crepe</h3>
+                            </div>
+                            <p class="menu-item__description">Crepe filled with Nutella and sliced bananas.</p>
+                            <div class="menu-item__footer">
+                                <span class="menu-item__price">$6.99</span>
+                            </div>
+                        </div>
+                    </article>
+                    <article class="menu-item">
+                        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuD2JVH6cqaOftyibzdZntda6lYZCFkX8wyP3Wi5dKLrccMl9GDfGyx5X9G7lzwB4fsIaPuC0vFRvjmebzrFh3Lw1f2f6-bIZODaaQPZNlELsYJ7fiwhVHIQPZYIVXd4L678_XpZjiKULY9iwz-XsyD6HWEeLVFfyrXnAp_Xcp5FXl6jP0d4xG173UNFUWoZ7wQNuvoI2nrBVBGfrfS2UXkx1xYIK3TPwx_r8d9kzgFOmdePjix5DQ6uVe70pIvyXhV-rM8dt1ekuG8v" alt="Strawberry Cream Crepe" class="menu-item__image" loading="lazy">
+                        <div class="menu-item__content">
+                            <div class="menu-item__header">
+                                <h3 class="menu-item__name">Strawberry Cream Crepe</h3>
+                            </div>
+                            <p class="menu-item__description">Crepe with fresh strawberries and whipped cream.</p>
+                            <div class="menu-item__footer">
+                                <span class="menu-item__price">$5.99</span>
+                            </div>
+                        </div>
+                    </article>
+                    <article class="menu-item">
+                        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAnenyGBqZ5bgTRcbQ5bWqH8OBK90pHzfzs9-7RwdqCCEiliCALSd5CaARH0P1hFQnfLkEuR0lXvFVkvCGvlITPDWzssmonfTxi6GdcET-2df7s2DvcM8T56-WPu4hs3b-984jnisyhCD1liKPHI4iCpamEAYHxUc67gjY9xDKpqnkOLWhy1oOTlqZqcSZoxzzTLBZT6ZZpy2bpEJCWh3bIl1nL4qDnoL6DZCzg8yzt-wBncp5znQDkjrqW48wTK8I5VBd3ZK25nFkQ" alt="Savory Ham & Cheese Crepe" class="menu-item__image" loading="lazy">
+                        <div class="menu-item__content">
+                            <div class="menu-item__header">
+                                <h3 class="menu-item__name">Savory Ham & Cheese Crepe</h3>
+                            </div>
+                            <p class="menu-item__description">Savory crepe with ham and melted cheese.</p>
+                            <div class="menu-item__footer">
+                                <span class="menu-item__price">$7.49</span>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </section>
+            <section class="menu-section closed" id="cups">
+                <div class="menu-section__header">
+                    <h2 class="menu-section__title">Cups</h2>
+                    <button class="menu-section__toggle" aria-label="Toggle section">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M6 8L10 12L14 8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                </div>
+                <div class="menu-items">
+                    <article class="menu-item">
+                        <img src="images/Crunchy Ice Cream.png" alt="Crunchy Ice Cream" class="menu-item__image" loading="lazy">
+                        <div class="menu-item__content">
+                            <div class="menu-item__header">
+                                <h3 class="menu-item__name">Crunchy Ice Cream</h3>
+                            </div>
+                            <p class="menu-item__description">Ice Cream in a cup</p>
+                            <div class="menu-item__footer">
+                                <span class="menu-item__price">$2.99</span>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </section>
+            <section class="menu-section closed" id="sticks">
+                <div class="menu-section__header">
+                    <h2 class="menu-section__title">Sticks</h2>
+                    <button class="menu-section__toggle" aria-label="Toggle section">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M6 8L10 12L14 8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                </div>
+                <div class="menu-items">
+                    <article class="menu-item">
+                        <img src="https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=400&q=80" alt="Stick Drink" class="menu-item__image" loading="lazy">
+                        <div class="menu-item__content">
+                            <div class="menu-item__header">
+                                <h3 class="menu-item__name">Fruit Stick</h3>
+                            </div>
+                            <p class="menu-item__description">Refreshing fruit on a stick.</p>
+                            <div class="menu-item__footer">
+                                <span class="menu-item__price">$1.99</span>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </section>
+            <section class="menu-section closed" id="ice-cream">
+                <div class="menu-section__header">
+                    <h2 class="menu-section__title">Ice Cream</h2>
+                    <button class="menu-section__toggle" aria-label="Toggle section">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M6 8L10 12L14 8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                </div>
+                <div class="menu-items">
+                    <article class="menu-item">
+                        <img src="https://images.unsplash.com/photo-1505250469679-203ad9ced0cb?auto=format&fit=crop&w=400&q=80" alt="Ice Cream" class="menu-item__image" loading="lazy">
+                        <div class="menu-item__content">
+                            <div class="menu-item__header">
+                                <h3 class="menu-item__name">Vanilla Ice Cream</h3>
+                            </div>
+                            <p class="menu-item__description">Classic vanilla ice cream scoop.</p>
+                            <div class="menu-item__footer">
+                                <span class="menu-item__price">$2.49</span>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </section>
+            <section class="menu-section closed" id="drinks">
+                <div class="menu-section__header">
+                    <h2 class="menu-section__title">Drinks</h2>
+                    <button class="menu-section__toggle" aria-label="Toggle section">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M6 8L10 12L14 8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                </div>
+                <div class="menu-items">
+                    <h3 class="menu-subsection__title" id="milkshakes">Milkshakes</h3>
+                    <article class="menu-item">
+                        <img src="https://images.unsplash.com/photo-1519864600265-abb23847ef2c?auto=format&fit=crop&w=400&q=80" alt="Milkshake" class="menu-item__image" loading="lazy">
+                        <div class="menu-item__content">
+                            <div class="menu-item__header">
+                                <h3 class="menu-item__name">Chocolate Milkshake</h3>
+                            </div>
+                            <p class="menu-item__description">Rich and creamy chocolate milkshake.</p>
+                            <div class="menu-item__footer">
+                                <span class="menu-item__price">$3.99</span>
+                            </div>
+                        </div>
+                    </article>
+                    <h3 class="menu-subsection__title" id="smoothies">Smoothies</h3>
+                    <article class="menu-item">
+                        <img src="https://images.unsplash.com/photo-1502741338009-cac2772e18bc?auto=format&fit=crop&w=400&q=80" alt="Smoothie" class="menu-item__image" loading="lazy">
+                        <div class="menu-item__content">
+                            <div class="menu-item__header">
+                                <h3 class="menu-item__name">Strawberry Smoothie</h3>
+                            </div>
+                            <p class="menu-item__description">Fresh strawberry and banana smoothie.</p>
+                            <div class="menu-item__footer">
+                                <span class="menu-item__price">$4.49</span>
+                            </div>
+                        </div>
+                    </article>
+                    <h3 class="menu-subsection__title" id="cocktails">Cocktails</h3>
+                    <article class="menu-item">
+                        <img src="https://images.unsplash.com/photo-1464306076886-debca5e8a6b0?auto=format&fit=crop&w=400&q=80" alt="Cocktail" class="menu-item__image" loading="lazy">
+                        <div class="menu-item__content">
+                            <div class="menu-item__header">
+                                <h3 class="menu-item__name">Fruit Cocktail</h3>
+                            </div>
+                            <p class="menu-item__description">A mix of fresh fruit and juice.</p>
+                            <div class="menu-item__footer">
+                                <span class="menu-item__price">$5.49</span>
+                            </div>
+                        </div>
+                    </article>
+                    <h3 class="menu-subsection__title" id="fresh-juice">Fresh Juice</h3>
+                    <article class="menu-item">
+                        <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=400&q=80" alt="Fresh Juice" class="menu-item__image" loading="lazy">
+                        <div class="menu-item__content">
+                            <div class="menu-item__header">
+                                <h3 class="menu-item__name">Orange Juice</h3>
+                            </div>
+                            <p class="menu-item__description">Freshly squeezed orange juice.</p>
+                            <div class="menu-item__footer">
+                                <span class="menu-item__price">$3.49</span>
+                            </div>
+                        </div>
+                    </article>
+                    <h3 class="menu-subsection__title" id="coffee-more">Coffee &amp; More</h3>
+                    <article class="menu-item">
+                        <img src="https://images.unsplash.com/photo-1511920170033-f8396924c348?auto=format&fit=crop&w=400&q=80" alt="Coffee" class="menu-item__image" loading="lazy">
+                        <div class="menu-item__content">
+                            <div class="menu-item__header">
+                                <h3 class="menu-item__name">Espresso</h3>
+                            </div>
+                            <p class="menu-item__description">Strong and rich espresso shot.</p>
+                            <div class="menu-item__footer">
+                                <span class="menu-item__price">$2.49</span>
+                            </div>
+                        </div>
+                    </article>
+                    <h3 class="menu-subsection__title" id="beverages">Beverages</h3>
+                    <article class="menu-item">
+                        <img src="https://images.unsplash.com/photo-1511920170033-f8396924c348?auto=format&fit=crop&w=400&q=80" alt="Coffee" class="menu-item__image" loading="lazy">
+                        <div class="menu-item__content">
+                            <div class="menu-item__header">
+                                <h3 class="menu-item__name">Water</h3>
+                            </div>
+                            <div class="menu-item__footer">
+                                <span class="menu-item__price">$2.49</span>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </section>
+            <section class="menu-section closed" id="add-ons">
+                <div class="menu-section__header">
+                    <h2 class="menu-section__title">Add-ons</h2>
+                    <button class="menu-section__toggle" aria-label="Toggle section">
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M6 8L10 12L14 8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                </div>
+                <div class="menu-items">
+                    <article class="menu-item">
+                        <img src="https://images.unsplash.com/photo-1502741338009-cac2772e18bc?auto=format&fit=crop&w=400&q=80" alt="Add-on" class="menu-item__image" loading="lazy">
+                        <div class="menu-item__content">
+                            <div class="menu-item__header">
+                                <h3 class="menu-item__name">Whipped Cream</h3>
+                            </div>
+                            <p class="menu-item__description">Add a dollop of whipped cream to any drink.</p>
+                            <div class="menu-item__footer">
+                                <span class="menu-item__price">$0.99</span>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </section>
+        </div>
+    </main>
+    <div class="section-separator"></div>
+
+    <!-- Our Story Section -->
+    <section class="our-story-section">
+      <div class="our-story-container">
+        <h2 class="our-story-title">Our Story</h2>
+        <div class="our-story-image">
+          <img src="images/rest.png" alt="Our Story" loading="lazy">
+        </div>
+        <div class="our-story-content">
+          <p class="our-story-text">
+         A journey through flavors and cultures. Inspired by the rich traditions of Belgium and the vibrant energy of Lebanon, we've crafted a menu that celebrates the unique taste of Belgian chocolate. From our signature brownie crepes to our decadent ice cream creations, every bite is a testament to our passion for quality and innovation. Join us on this delicious adventure and experience the magic that started with a dream.
+          </p>
+        </div>
+      </div>
+    </section>
+    <div class="section-separator"></div>
+
+    <div id="menu-modal" class="menu-modal" aria-modal="true" role="dialog" tabindex="-1" style="display:none;">
+        <div class="menu-modal__overlay"></div>
+        <div class="menu-modal__content" role="document">
+            <button class="menu-modal__close" aria-label="Close">&times;</button>
+            <img class="menu-modal__image" src="" alt="" />
+            <h2 class="menu-modal__name"></h2>
+            <p class="menu-modal__description"></p>
+            <div class="menu-modal__price"></div>
+            <button class="menu-modal__add-to-cart">Add to Cart</button>
+        </div>
+    </div>
+
+    <div id="cart-modal" class="menu-modal cart-modal" aria-modal="true" role="dialog" tabindex="-1" style="display:none;">
+        <div class="menu-modal__overlay cart-modal__overlay"></div>
+        <div class="menu-modal__content cart-modal__content" role="document">
+            <button class="menu-modal__close cart-modal__close" aria-label="Close">&times;</button>
+            <h2 class="cart-modal__title">Your Cart</h2>
+            <div class="cart-modal__items"></div>
+            <div class="cart-modal__footer">
+                <div class="cart-modal__total-row">
+                    <span class="cart-modal__total-label">Total:</span>
+                    <span class="cart-modal__total-value">$0.00</span>
+                </div>
+                <button class="cart-modal__clear">Clear Cart</button>
+                <a href="tel:+96170222222" class="cart-modal__order-btn">Call to Order</a>
+            </div>
+        </div>
+    </div>
+
+    <footer class="choco-footer">
+      <div class="choco-footer__content">
+        <img src="images/logo.png" alt="Choco's Logo" class="choco-footer__logo" />
+        <div class="choco-footer__copyright">© 2025 Choco Crepe. All rights reserved.</div>
+        <div class="choco-footer__social">
+          <a href="https://facebook.com/yourpage" class="choco-footer__social-icon" aria-label="Facebook" target="_blank" rel="noopener">
+            <svg width="24" height="24" fill="none" viewBox="0 0 24 24"><path d="M17 2.05A9.05 9.05 0 1 1 7.05 21.1V14.1H4.5v-3.1h2.55V8.7c0-2.52 1.5-3.9 3.8-3.9 1.1 0 2.25.2 2.25.2v2.48h-1.27c-1.25 0-1.63.78-1.63 1.58v1.94h2.78l-.44 3.1h-2.34v7A9.05 9.05 0 0 0 17 2.05Z" fill="currentColor"/></svg>
+          </a>
+          <a href="https://instagram.com/yourpage" class="choco-footer__social-icon" aria-label="Instagram" target="_blank" rel="noopener">
+            <svg width="24" height="24" fill="none" viewBox="0 0 24 24"><rect width="18" height="18" x="3" y="3" rx="5" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="2"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
+          </a>
+        </div>
+        <div class="choco-footer__locations">
+          <div class="choco-footer__location">
+            <div class="choco-footer__location-name">Achrafieh</div>
+            <div class="choco-footer__location-row">
+              <a href="tel:+96170222222" class="choco-footer__location-phone">+961 70 222 222</a>
+              <a href="https://wa.me/96170222222" class="choco-footer__location-whatsapp" aria-label="WhatsApp" target="_blank" rel="noopener">
+                <svg width="22" height="22" fill="none" viewBox="0 0 24 24"><path d="M20.52 3.48A12.07 12.07 0 0 0 12 0C5.37 0 0 5.37 0 12c0 2.12.55 4.18 1.6 6.02L0 24l6.18-1.6A12.07 12.07 0 0 0 12 24c6.63 0 12-5.37 12-12 0-3.21-1.25-6.23-3.48-8.52ZM12 22c-1.85 0-3.66-.5-5.22-1.44l-.37-.22-3.67.95.98-3.58-.24-.37A9.98 9.98 0 1 1 22 12c0 5.52-4.48 10-10 10Zm5.27-7.4c-.29-.15-1.7-.84-1.96-.94-.26-.1-.45-.15-.64.15-.19.29-.74.94-.91 1.13-.17.19-.34.21-.63.07-.29-.15-1.22-.45-2.33-1.43-.86-.77-1.44-1.72-1.61-2.01-.17-.29-.02-.45.13-.6.13-.13.29-.34.43-.51.14-.17.19-.29.29-.48.1-.19.05-.36-.02-.51-.07-.15-.64-1.54-.88-2.11-.23-.56-.47-.48-.64-.49-.16-.01-.36-.01-.56-.01-.19 0-.5.07-.76.36-.26.29-1 1-.99 2.43.01 1.43 1.03 2.81 1.18 3.01.15.19 2.03 3.1 5.01 4.23.7.24 1.25.38 1.68.48.71.17 1.36.15 1.87.09.57-.07 1.7-.7 1.94-1.37.24-.67.24-1.25.17-1.37-.07-.12-.26-.19-.55-.34Z" fill="currentColor"/></svg>
+              </a>
+            </div>
+            <a href="https://goo.gl/maps/achrafieh" class="choco-footer__location-map" target="_blank" rel="noopener">Visit us</a>
+          </div>
+          <div class="choco-footer__location">
+            <div class="choco-footer__location-name">Joub Jannine</div>
+            <div class="choco-footer__location-row">
+              <a href="tel:+96181333333" class="choco-footer__location-phone">+961 81 333 333</a>
+              <a href="https://wa.me/96181333333" class="choco-footer__location-whatsapp" aria-label="WhatsApp" target="_blank" rel="noopener">
+                <svg width="22" height="22" fill="none" viewBox="0 0 24 24"><path d="M20.52 3.48A12.07 12.07 0 0 0 12 0C5.37 0 0 5.37 0 12c0 2.12.55 4.18 1.6 6.02L0 24l6.18-1.6A12.07 12.07 0 0 0 12 24c6.63 0 12-5.37 12-12 0-3.21-1.25-6.23-3.48-8.52ZM12 22c-1.85 0-3.66-.5-5.22-1.44l-.37-.22-3.67.95.98-3.58-.24-.37A9.98 9.98 0 1 1 22 12c0 5.52-4.48 10-10 10Zm5.27-7.4c-.29-.15-1.7-.84-1.96-.94-.26-.1-.45-.15-.64.15-.19.29-.74.94-.91 1.13-.17.19-.34.21-.63.07-.29-.15-1.22-.45-2.33-1.43-.86-.77-1.44-1.72-1.61-2.01-.17-.29-.02-.45.13-.6.13-.13.29-.34.43-.51.14-.17.19-.29.29-.48.1-.19.05-.36-.02-.51-.07-.15-.64-1.54-.88-2.11-.23-.56-.47-.48-.64-.49-.16-.01-.36-.01-.56-.01-.19 0-.5.07-.76.36-.26.29-1 1-.99 2.43.01 1.43 1.03 2.81 1.18 3.01.15.19 2.03 3.1 5.01 4.23.7.24 1.25.38 1.68.48.71.17 1.36.15 1.87.09.57-.07 1.7-.7 1.94-1.37.24-.67.24-1.25.17-1.37-.07-.12-.26-.19-.55-.34Z" fill="currentColor"/></svg>
+              </a>
+            </div>
+            <a href="https://goo.gl/maps/joubjannine" class="choco-footer__location-map" target="_blank" rel="noopener">Visit us</a>
+          </div>
+          <div class="choco-footer__location">
+            <div class="choco-footer__location-name">Ferzol</div>
+            <div class="choco-footer__location-row">
+              <a href="tel:+96171444444" class="choco-footer__location-phone">+961 71 444 444</a>
+              <a href="https://wa.me/96171444444" class="choco-footer__location-whatsapp" aria-label="WhatsApp" target="_blank" rel="noopener">
+                <svg width="22" height="22" fill="none" viewBox="0 0 24 24"><path d="M20.52 3.48A12.07 12.07 0 0 0 12 0C5.37 0 0 5.37 0 12c0 2.12.55 4.18 1.6 6.02L0 24l6.18-1.6A12.07 12.07 0 0 0 12 24c6.63 0 12-5.37 12-12 0-3.21-1.25-6.23-3.48-8.52ZM12 22c-1.85 0-3.66-.5-5.22-1.44l-.37-.22-3.67.95.98-3.58-.24-.37A9.98 9.98 0 1 1 22 12c0 5.52-4.48 10-10 10Zm5.27-7.4c-.29-.15-1.7-.84-1.96-.94-.26-.1-.45-.15-.64.15-.19.29-.74.94-.91 1.13-.17.19-.34.21-.63.07-.29-.15-1.22-.45-2.33-1.43-.86-.77-1.44-1.72-1.61-2.01-.17-.29-.02-.45.13-.6.13-.13.29-.34.43-.51.14-.17.19-.29.29-.48.1-.19.05-.36-.02-.51-.07-.15-.64-1.54-.88-2.11-.23-.56-.47-.48-.64-.49-.16-.01-.36-.01-.56-.01-.19 0-.5.07-.76.36-.26.29-1 1-.99 2.43.01 1.43 1.03 2.81 1.18 3.01.15.19 2.03 3.1 5.01 4.23.7.24 1.25.38 1.68.48.71.17 1.36.15 1.87.09.57-.07 1.7-.7 1.94-1.37.24-.67.24-1.25.17-1.37-.07-.12-.26-.19-.55-.34Z" fill="currentColor"/></svg>
+              </a>
+            </div>
+            <a href="https://goo.gl/maps/ferzol" class="choco-footer__location-map" target="_blank" rel="noopener">Visit us</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <div id="navOverlay" class="nav-overlay" style="display:none;">
+      <button class="nav-overlay__close" id="navOverlayClose" aria-label="Close menu">&times;</button>
+      <div class="nav-overlay__content">
+        <img src="images/logo.png" alt="Choco's Logo" class="nav-overlay__logo" />
+        <div class="nav-overlay__social">
+          <a href="https://facebook.com/yourpage" class="nav-overlay__social-icon" aria-label="Facebook" target="_blank" rel="noopener">
+            <svg width="28" height="28" fill="none" viewBox="0 0 24 24"><path d="M17 2.05A9.05 9.05 0 1 1 7.05 21.1V14.1H4.5v-3.1h2.55V8.7c0-2.52 1.5-3.9 3.8-3.9 1.1 0 2.25.2 2.25.2v2.48h-1.27c-1.25 0-1.63.78-1.63 1.58v1.94h2.78l-.44 3.1h-2.34v7A9.05 9.05 0 0 0 17 2.05Z" fill="currentColor"/></svg>
+          </a>
+          <a href="https://instagram.com/yourpage" class="nav-overlay__social-icon" aria-label="Instagram" target="_blank" rel="noopener">
+            <svg width="28" height="28" fill="none" viewBox="0 0 24 24"><rect width="18" height="18" x="3" y="3" rx="5" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="2"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
+          </a>
+        </div>
+        <ul class="nav-overlay__list">
+          <li><a href="#" class="nav-overlay__link" data-nav="menu">View Menu</a></li>
+          <li><a href="#" class="nav-overlay__link" data-nav="contact">Contact Us</a></li>
+          <li><a href="#" class="nav-overlay__link" data-nav="cart">Cart</a></li>
+        </ul>
+        <div class="nav-overlay__locations">
+          <div class="nav-overlay__location">
+            <div class="nav-overlay__location-name">Achrafieh</div>
+            <div class="nav-overlay__location-row">
+              <a href="tel:+96170222222" class="nav-overlay__location-phone">+961 70 222 222</a>
+              <a href="https://wa.me/96170222222" class="nav-overlay__location-whatsapp" aria-label="WhatsApp" target="_blank" rel="noopener">
+                <svg width="22" height="22" fill="none" viewBox="0 0 24 24"><path d="M20.52 3.48A12.07 12.07 0 0 0 12 0C5.37 0 0 5.37 0 12c0 2.12.55 4.18 1.6 6.02L0 24l6.18-1.6A12.07 12.07 0 0 0 12 24c6.63 0 12-5.37 12-12 0-3.21-1.25-6.23-3.48-8.52ZM12 22c-1.85 0-3.66-.5-5.22-1.44l-.37-.22-3.67.95.98-3.58-.24-.37A9.98 9.98 0 1 1 22 12c0 5.52-4.48 10-10 10Zm5.27-7.4c-.29-.15-1.7-.84-1.96-.94-.26-.1-.45-.15-.64.15-.19.29-.74.94-.91 1.13-.17.19-.34.21-.63.07-.29-.15-1.22-.45-2.33-1.43-.86-.77-1.44-1.72-1.61-2.01-.17-.29-.02-.45.13-.6.13-.13.29-.34.43-.51.14-.17.19-.29.29-.48.1-.19.05-.36-.02-.51-.07-.15-.64-1.54-.88-2.11-.23-.56-.47-.48-.64-.49-.16-.01-.36-.01-.56-.01-.19 0-.5.07-.76.36-.26.29-1 1-.99 2.43.01 1.43 1.03 2.81 1.18 3.01.15.19 2.03 3.1 5.01 4.23.7.24 1.25.38 1.68.48.71.17 1.36.15 1.87.09.57-.07 1.7-.7 1.94-1.37.24-.67.24-1.25.17-1.37-.07-.12-.26-.19-.55-.34Z" fill="currentColor"/></svg>
+              </a>
+            </div>
+            <a href="https://goo.gl/maps/achrafieh" class="nav-overlay__location-map" target="_blank" rel="noopener">Visit us</a>
+          </div>
+          <div class="nav-overlay__location">
+            <div class="nav-overlay__location-name">Joub Jannine</div>
+            <div class="nav-overlay__location-row">
+              <a href="tel:+96170111111" class="nav-overlay__location-phone">+961 70 111 111</a>
+              <a href="https://wa.me/96170111111" class="nav-overlay__location-whatsapp" aria-label="WhatsApp" target="_blank" rel="noopener">
+                <svg width="22" height="22" fill="none" viewBox="0 0 24 24"><path d="M20.52 3.48A12.07 12.07 0 0 0 12 0C5.37 0 0 5.37 0 12c0 2.12.55 4.18 1.6 6.02L0 24l6.18-1.6A12.07 12.07 0 0 0 12 24c6.63 0 12-5.37 12-12 0-3.21-1.25-6.23-3.48-8.52ZM12 22c-1.85 0-3.66-.5-5.22-1.44l-.37-.22-3.67.95.98-3.58-.24-.37A9.98 9.98 0 1 1 22 12c0 5.52-4.48 10-10 10Zm5.27-7.4c-.29-.15-1.7-.84-1.96-.94-.26-.1-.45-.15-.64.15-.19.29-.74.94-.91 1.13-.17.19-.34.21-.63.07-.29-.15-1.22-.45-2.33-1.43-.86-.77-1.44-1.72-1.61-2.01-.17-.29-.02-.45.13-.6.13-.13.29-.34.43-.51.14-.17.19-.29.29-.48.1-.19.05-.36-.02-.51-.07-.15-.64-1.54-.88-2.11-.23-.56-.47-.48-.64-.49-.16-.01-.36-.01-.56-.01-.19 0-.5.07-.76.36-.26.29-1 1-.99 2.43.01 1.43 1.03 2.81 1.18 3.01.15.19 2.03 3.1 5.01 4.23.7.24 1.25.38 1.68.48.71.17 1.36.15 1.87.09.57-.07 1.7-.7 1.94-1.37.24-.67.24-1.25.17-1.37-.07-.12-.26-.19-.55-.34Z" fill="currentColor"/></svg>
+              </a>
+            </div>
+            <a href="https://goo.gl/maps/joubjannine" class="nav-overlay__location-map" target="_blank" rel="noopener">Visit us</a>
+          </div>
+          <div class="nav-overlay__location">
+            <div class="nav-overlay__location-name">Ferzol</div>
+            <div class="nav-overlay__location-row">
+              <a href="tel:+96170333333" class="nav-overlay__location-phone">+961 70 333 333</a>
+              <a href="https://wa.me/96170333333" class="nav-overlay__location-whatsapp" aria-label="WhatsApp" target="_blank" rel="noopener">
+                <svg width="22" height="22" fill="none" viewBox="0 0 24 24"><path d="M20.52 3.48A12.07 12.07 0 0 0 12 0C5.37 0 0 5.37 0 12c0 2.12.55 4.18 1.6 6.02L0 24l6.18-1.6A12.07 12.07 0 0 0 12 24c6.63 0 12-5.37 12-12 0-3.21-1.25-6.23-3.48-8.52ZM12 22c-1.85 0-3.66-.5-5.22-1.44l-.37-.22-3.67.95.98-3.58-.24-.37A9.98 9.98 0 1 1 22 12c0 5.52-4.48 10-10 10Zm5.27-7.4c-.29-.15-1.7-.84-1.96-.94-.26-.1-.45-.15-.64.15-.19.29-.74.94-.91 1.13-.17.19-.34.21-.63.07-.29-.15-1.22-.45-2.33-1.43-.86-.77-1.44-1.72-1.61-2.01-.17-.29-.02-.45.13-.6.13-.13.29-.34.43-.51.14-.17.19-.29.29-.48.1-.19.05-.36-.02-.51-.07-.15-.64-1.54-.88-2.11-.23-.56-.47-.48-.64-.49-.16-.01-.36-.01-.56-.01-.19 0-.5.07-.76.36-.26.29-1 1-.99 2.43.01 1.43 1.03 2.81 1.18 3.01.15.19 2.03 3.1 5.01 4.23.7.24 1.25.38 1.68.48.71.17 1.36.15 1.87.09.57-.07 1.7-.7 1.94-1.37.24-.67.24-1.25.17-1.37-.07-.12-.26-.19-.55-.34Z" fill="currentColor"/></svg>
+              </a>
+            </div>
+            <a href="https://goo.gl/maps/ferzol" class="nav-overlay__location-map" target="_blank" rel="noopener">Visit us</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html> 
