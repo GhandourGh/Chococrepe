@@ -1,3 +1,170 @@
+// --- SUPABASE DYNAMIC MENU ---
+const SUPABASE_URL = 'https://swqjfrcukhsxadjpuubs.supabase.co';
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InN3cWpmcmN1a2hzeGFkanB1dWJzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTE1NzE1OTYsImV4cCI6MjA2NzE0NzU5Nn0.8xUXDCGlrHcnsmlE5GgRGLtu-SSWZDHOvI52nfgqXV0';
+const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+const menuSections = document.getElementById('menuSections');
+const categoryTabs = document.querySelectorAll('.category-tab');
+
+const DRINK_SUBCATEGORIES = [
+  'Milkshakes',
+  'Smoothies',
+  'Cocktails',
+  'Fresh Juice',
+  'Coffee & More',
+  'Beverages'
+];
+
+const CATEGORY_MAP = {
+    'crepes': 'Crepes',
+  'desserts': 'Desserts',
+  'cups': 'Cups',
+  'sticks': 'Sticks',
+  'ice-cream': 'Ice Cream',
+  'drinks': 'Drinks',
+  'add-ons': 'Add-ons',
+  'shisha': 'Shisha'
+};
+
+function getImageUrl(imagePath) {
+  if (!imagePath) return '';
+  return `${SUPABASE_URL}/storage/v1/object/public/menu-images/${imagePath}`;
+}
+
+async function fetchMenuItems() {
+  const { data, error } = await supabase
+    .from('menu_items')
+    .select('*')
+    .order('category')
+    .order('subcategory')
+    .order('name');
+  if (error) {
+    menuSections.innerHTML = '<p class="error">Failed to load menu.</p>';
+    return [];
+  }
+  return data;
+}
+
+function renderMenu(items, filterCategory = null) {
+  menuSections.innerHTML = '';
+  // Group by category and subcategory (do NOT filter here)
+  const grouped = {};
+  items.forEach(item => {
+    const catKey = (item.category || '').toLowerCase().replace(/\s+/g, '-');
+    if (!grouped[catKey]) grouped[catKey] = {};
+    const subcat = item.subcategory || 'Other';
+    if (!grouped[catKey][subcat]) grouped[catKey][subcat] = [];
+    grouped[catKey][subcat].push(item);
+  });
+  Object.entries(CATEGORY_MAP).forEach(([catKey, catLabel]) => {
+    // Always create the section, even if there are no items
+    const section = document.createElement('section');
+    section.className = 'menu-section closed';
+    section.id = catKey;
+    section.innerHTML = `
+      <div class="menu-section__header">
+        <h2 class="menu-section__title">${catLabel}</h2>
+        <button class="menu-section__toggle" aria-label="Toggle ${catLabel}">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M7 10l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </div>`;
+    if (grouped[catKey]) {
+      Object.entries(grouped[catKey]).forEach(([subcat, items], subIdx) => {
+        let subcatId = `${catKey}-subcat-${subIdx}`;
+        let subcatToggle = '';
+        if (catKey === 'drinks' && subcat !== 'Other') {
+          subcatToggle = `<button class="menu-subsection__toggle" aria-label="Toggle ${subcat}"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>`;
+          section.innerHTML += `<div class="menu-subsection closed" id="${subcatId}" style="display:none;"><div class="menu-subsection__header"><h3 class="menu-subsection__title">${subcat}</h3>${subcatToggle}</div>`;
+        }
+        const itemsDiv = document.createElement('div');
+        itemsDiv.className = 'menu-items';
+        items.forEach(item => {
+          itemsDiv.innerHTML += `
+            <article class="menu-item">
+              <img src="${getImageUrl(item.image_path)}" alt="${item.name}" class="menu-item__image" loading="lazy">
+              <div class="menu-item__content">
+                <div class="menu-item__header">
+                  <h3 class="menu-item__name">${item.name}</h3>
+                </div>
+                <p class="menu-item__description">${item.description || ''}</p>
+                <div class="menu-item__footer">
+                  <span class="menu-item__price">$${item.price.toFixed(2)}</span>
+                </div>
+              </div>
+            </article>
+          `;
+        });
+        if (catKey === 'drinks' && subcat !== 'Other') {
+          section.innerHTML += `</div>`; // close menu-subsection__header
+          section.appendChild(itemsDiv);
+          section.innerHTML += `</div>`; // close menu-subsection
+        } else {
+          section.appendChild(itemsDiv);
+        }
+      });
+    } else {
+      // No items in this category
+      const emptyDiv = document.createElement('div');
+      emptyDiv.className = 'menu-items menu-items--empty';
+      emptyDiv.innerHTML = `<div style="color:var(--textSecondary);opacity:0.7;padding:24px 0;text-align:center;font-weight:500;">No items in this category yet.</div>`;
+      section.appendChild(emptyDiv);
+    }
+    menuSections.appendChild(section);
+  });
+  // Attach modal logic to new menu items
+  setupMenuItemModal();
+  // Ensure dropdown toggles are functional after render
+  setupMenuSectionToggles();
+  setupMenuSubsectionToggles();
+}
+
+categoryTabs.forEach(tab => {
+  tab.addEventListener('click', async e => {
+    e.preventDefault();
+    categoryTabs.forEach(t => t.classList.remove('active'));
+    tab.classList.add('active');
+    const filter = tab.getAttribute('href').replace('#', '');
+    // Store open sections before render
+    const openSections = Array.from(document.querySelectorAll('.menu-section:not(.closed)')).map(sec => sec.id);
+    const items = await fetchMenuItems();
+    renderMenu(items, filter === 'all' ? null : filter);
+    // After render, re-open previously open sections
+    openSections.forEach(id => {
+      const sec = document.getElementById(id);
+      if (sec) sec.classList.remove('closed');
+    });
+    // Open the chosen category
+    if (filter && filter !== 'all') {
+      const section = document.getElementById(filter);
+      if (section) {
+        section.classList.remove('closed');
+        section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
+  });
+});
+
+(async () => {
+  const items = await fetchMenuItems();
+  renderMenu(items);
+})();
+
+// Real-time updates: re-fetch and re-render menu on any change
+supabase
+  .channel('public:menu_items')
+  .on(
+    'postgres_changes',
+    { event: '*', schema: 'public', table: 'menu_items' },
+    async (payload) => {
+      const items = await fetchMenuItems();
+      renderMenu(items);
+    }
+  )
+  .subscribe();
+// --- END SUPABASE DYNAMIC MENU ---
+
 // --- CART STATE ---
 let cart = [];
 
@@ -32,7 +199,9 @@ function renderCartModal() {
     }
     let total = 0;
     cart.forEach((item, idx) => {
-        total += item.qty * item.price;
+        // Ensure price is a valid number
+        const itemPrice = typeof item.price === 'number' && !isNaN(item.price) ? item.price : 0;
+        total += item.qty * itemPrice;
         const el = document.createElement('div');
         el.className = 'cart-modal__item';
         el.innerHTML = `
@@ -40,7 +209,7 @@ function renderCartModal() {
             <div class="cart-modal__item-info">
                 <div class="cart-modal__item-name">${item.name}</div>
                 <div class="cart-modal__item-qty">Qty: ${item.qty}</div>
-                <div class="cart-modal__item-price">$${(item.price * item.qty).toFixed(2)}</div>
+                <div class="cart-modal__item-price">$${(itemPrice * item.qty).toFixed(2)}</div>
             </div>
             <button class="cart-modal__item-remove" title="Remove item" data-idx="${idx}">&times;</button>
         `;
@@ -94,16 +263,45 @@ function setupMenuItemModal() {
     const overlay = modal.querySelector('.menu-modal__overlay');
     const addToCartBtn = modal.querySelector('.menu-modal__add-to-cart');
 
+    // Add quantity controls if not present
+    let qtyWrapper = modal.querySelector('.menu-modal__qty-wrapper');
+    if (!qtyWrapper) {
+        qtyWrapper = document.createElement('div');
+        qtyWrapper.className = 'menu-modal__qty-wrapper';
+        qtyWrapper.innerHTML = `
+            <button type="button" class="menu-modal__qty-minus">-</button>
+            <span class="menu-modal__qty-value">1</span>
+            <button type="button" class="menu-modal__qty-plus">+</button>
+        `;
+        addToCartBtn.parentElement.insertBefore(qtyWrapper, addToCartBtn);
+    }
+    const qtyValue = qtyWrapper.querySelector('.menu-modal__qty-value');
+    const qtyMinus = qtyWrapper.querySelector('.menu-modal__qty-minus');
+    const qtyPlus = qtyWrapper.querySelector('.menu-modal__qty-plus');
+
+    function resetQty() { qtyValue.textContent = '1'; }
+
+    qtyMinus.onclick = () => {
+        let val = parseInt(qtyValue.textContent, 10);
+        if (val > 1) qtyValue.textContent = val - 1;
+    };
+    qtyPlus.onclick = () => {
+        let val = parseInt(qtyValue.textContent, 10);
+        qtyValue.textContent = val + 1;
+    };
+
     function openModal({img, name, desc, price}) {
         modalImg.src = img.src;
         modalImg.alt = img.alt || name;
         modalName.textContent = name;
         modalDesc.textContent = desc || '';
         modalDesc.style.display = desc ? '' : 'none';
-        modalPrice.textContent = price || '';
+        modalPrice.textContent = price !== undefined && price !== null ? `$${Number(price).toFixed(2)}` : '';
+        modalPrice.setAttribute('data-price', price);
         modal.classList.add('active');
         modal.style.display = 'flex';
         document.body.style.overflow = 'hidden';
+        resetQty();
     }
     function closeModal() {
         modal.classList.remove('active');
@@ -118,36 +316,32 @@ function setupMenuItemModal() {
 
     // Add to Cart functionality
     if (addToCartBtn) {
-        addToCartBtn.addEventListener('click', function() {
-            // --- ADD TO CART LOGIC ---
+        addToCartBtn.onclick = function() {
             const name = modalName.textContent;
-            const price = parseFloat((modalPrice.textContent || '').replace(/[^\d.]/g, ''));
+            const price = parseFloat(modalPrice.getAttribute('data-price'));
             const img = modalImg.src;
-            // If item exists, increment qty
+            const qty = parseInt(qtyValue.textContent, 10) || 1;
             const idx = cart.findIndex(i => i.name === name && i.price === price && i.img === img);
             if (idx > -1) {
-                cart[idx].qty++;
+                cart[idx].qty += qty;
             } else {
-                cart.push({ name, price, img, qty: 1 });
+                cart.push({ name, price, img, qty });
             }
             updateCartBadge();
-            // --- FEEDBACK ---
+            // Feedback
             const originalText = addToCartBtn.textContent;
-            const originalBg = addToCartBtn.style.backgroundColor;
-            const originalColor = addToCartBtn.style.color;
             addToCartBtn.textContent = 'ENJOY!';
             addToCartBtn.style.backgroundColor = 'var(--textSecondary)';
             addToCartBtn.style.color = 'white';
-            addToCartBtn.disabled = true;
             addToCartBtn.style.transform = 'scale(1.05)';
             setTimeout(() => {
                 addToCartBtn.textContent = originalText;
-                addToCartBtn.style.backgroundColor = 'var(--textSecondary)';
-                addToCartBtn.style.color = 'var(--textPrimary)';
-                addToCartBtn.disabled = false;
+                addToCartBtn.style.backgroundColor = '';
+                addToCartBtn.style.color = '';
                 addToCartBtn.style.transform = '';
-            }, 1500);
-        });
+                resetQty();
+            }, 1000);
+        };
     }
 
     document.querySelectorAll('.menu-item').forEach(item => {
@@ -155,16 +349,23 @@ function setupMenuItemModal() {
         const name = item.querySelector('.menu-item__name');
         const desc = item.querySelector('.menu-item__description');
         const price = item.querySelector('.menu-item__price');
+        // Extract the price as a number from the DOM
+        let priceValue = 0;
+        if (price) {
+            // Remove $ and commas, parse as float
+            priceValue = parseFloat((price.textContent || '').replace(/[^\d.]/g, ''));
+        }
         function show() {
             openModal({
                 img,
                 name: name ? name.textContent : '',
                 desc: desc ? desc.textContent : '',
-                price: price ? price.textContent : ''
+                price: priceValue // Pass the number, not the string
             });
         }
-        if (img) img.addEventListener('click', show);
-        if (name) name.addEventListener('click', show);
+        // Make the entire menu-item clickable
+        item.style.cursor = 'pointer';
+        item.addEventListener('click', show);
     });
 }
 document.addEventListener('DOMContentLoaded', setupMenuItemModal);
@@ -291,25 +492,46 @@ function setupMenuSectionToggles() {
         items.style.maxHeight = items.scrollHeight + 'px';
         // Toggle on header click (not just button)
         header.addEventListener('click', (e) => {
-            // Prevent double toggle if button is clicked
             if (e.target.closest('.menu-section__toggle')) {
-                // Let the button's click handler run
                 return;
             }
             const isClosed = section.classList.toggle('closed');
             if (isClosed) {
                 items.style.maxHeight = '0px';
+                // If this is the drinks section, close and hide all subcategories
+                if (section.id === 'drinks') {
+                  section.querySelectorAll('.menu-subsection').forEach(sub => {
+                    sub.classList.add('closed');
+                    sub.style.display = 'none';
+                  });
+                }
             } else {
                 items.style.maxHeight = items.scrollHeight + 'px';
+                // If this is the drinks section, show all subcategories (but keep them closed)
+                if (section.id === 'drinks') {
+                  section.querySelectorAll('.menu-subsection').forEach(sub => {
+                    sub.style.display = '';
+                  });
+                }
             }
         });
-        // Still allow button to toggle for accessibility
         toggle.addEventListener('click', (e) => {
             const isClosed = section.classList.toggle('closed');
             if (isClosed) {
                 items.style.maxHeight = '0px';
+                if (section.id === 'drinks') {
+                  section.querySelectorAll('.menu-subsection').forEach(sub => {
+                    sub.classList.add('closed');
+                    sub.style.display = 'none';
+                  });
+                }
             } else {
                 items.style.maxHeight = items.scrollHeight + 'px';
+                if (section.id === 'drinks') {
+                  section.querySelectorAll('.menu-subsection').forEach(sub => {
+                    sub.style.display = '';
+                  });
+                }
             }
         });
     });
@@ -384,4 +606,83 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   startAuto();
-}); 
+});
+
+// Inject CSS for quantity controls if not present
+if (!document.getElementById('modal-qty-style')) {
+  const style = document.createElement('style');
+  style.id = 'modal-qty-style';
+  style.textContent = `
+    .menu-modal__qty-wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      margin-bottom: 18px;
+      margin-top: 8px;
+    }
+    .menu-modal__qty-minus, .menu-modal__qty-plus {
+      background: #fff6ee;
+      color: #b88b6a;
+      border: 2px solid #e7d7c9;
+      border-radius: 50%;
+      width: 36px;
+      height: 36px;
+      font-size: 1.5rem;
+      font-weight: 900;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s, border 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      outline: none;
+    }
+    .menu-modal__qty-minus:hover, .menu-modal__qty-plus:hover {
+      background: #b88b6a;
+      color: #fff;
+      border-color: #b88b6a;
+    }
+    .menu-modal__qty-value {
+      min-width: 32px;
+      text-align: center;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #2d2d2d;
+      background: none;
+      border: none;
+      pointer-events: none;
+    }
+  `;
+  document.head.appendChild(style);
+}
+
+function setupMenuSubsectionToggles() {
+  document.querySelectorAll('.menu-section#drinks .menu-subsection').forEach(subsection => {
+    const header = subsection.querySelector('.menu-subsection__header');
+    const toggle = subsection.querySelector('.menu-subsection__toggle');
+    const items = subsection.nextElementSibling;
+    if (!header || !toggle) return;
+    // Find the .menu-items div that follows this subsection
+    let itemsDiv = subsection.querySelector('.menu-items');
+    if (!itemsDiv) itemsDiv = items;
+    if (!itemsDiv) return;
+    // Set initial state
+    itemsDiv.style.maxHeight = subsection.classList.contains('closed') ? '0px' : itemsDiv.scrollHeight + 'px';
+    // Toggle on header or button click
+    function toggleSubcat() {
+      const isClosed = subsection.classList.toggle('closed');
+      if (isClosed) {
+        itemsDiv.style.maxHeight = '0px';
+      } else {
+        itemsDiv.style.maxHeight = itemsDiv.scrollHeight + 'px';
+      }
+    }
+    header.addEventListener('click', (e) => {
+      if (e.target.closest('.menu-subsection__toggle')) return;
+      toggleSubcat();
+    });
+    toggle.addEventListener('click', (e) => {
+      toggleSubcat();
+    });
+  });
+} 
