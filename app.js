@@ -4,7 +4,6 @@ const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBh
 const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
 const menuSections = document.getElementById('menuSections');
-const categoryTabs = document.querySelectorAll('.category-tab');
 
 const DRINK_SUBCATEGORIES = [
   'Milkshakes',
@@ -120,32 +119,6 @@ function renderMenu(items, filterCategory = null) {
   setupMenuSubsectionToggles();
 }
 
-categoryTabs.forEach(tab => {
-  tab.addEventListener('click', async e => {
-    e.preventDefault();
-    categoryTabs.forEach(t => t.classList.remove('active'));
-    tab.classList.add('active');
-    const filter = tab.getAttribute('href').replace('#', '');
-    // Store open sections before render
-    const openSections = Array.from(document.querySelectorAll('.menu-section:not(.closed)')).map(sec => sec.id);
-    const items = await fetchMenuItems();
-    renderMenu(items, filter === 'all' ? null : filter);
-    // After render, re-open previously open sections
-    openSections.forEach(id => {
-      const sec = document.getElementById(id);
-      if (sec) sec.classList.remove('closed');
-    });
-    // Open the chosen category
-    if (filter && filter !== 'all') {
-      const section = document.getElementById(filter);
-      if (section) {
-        section.classList.remove('closed');
-        section.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
-    }
-  });
-});
-
 (async () => {
   const items = await fetchMenuItems();
   renderMenu(items);
@@ -164,6 +137,104 @@ supabase
   )
   .subscribe();
 // --- END SUPABASE DYNAMIC MENU ---
+
+// --- HERO VIDEO CAROUSEL ---
+function setupHeroVideoCarousel() {
+    const videos = document.querySelectorAll('.hero-video');
+    
+    let currentVideoIndex = 0;
+    let autoPlayInterval;
+    
+    function showVideo(index) {
+        // Remove active class from all videos
+        videos.forEach(video => video.classList.remove('active'));
+        
+        // Add active class to current video
+        videos[index].classList.add('active');
+        
+        // Play the current video with error handling
+        const currentVideo = videos[index];
+        const playPromise = currentVideo.play();
+        
+        if (playPromise !== undefined) {
+            playPromise.catch(error => {
+                console.warn('Video autoplay failed:', error);
+                // Fallback: try to play on user interaction
+                document.addEventListener('click', () => currentVideo.play(), { once: true });
+            });
+        }
+        
+        // Pause other videos
+        videos.forEach((video, i) => {
+            if (i !== index) {
+                video.pause();
+            }
+        });
+        
+        currentVideoIndex = index;
+    }
+    
+    function nextVideo() {
+        const nextIndex = (currentVideoIndex + 1) % videos.length;
+        showVideo(nextIndex);
+    }
+    
+    function prevVideo() {
+        const prevIndex = (currentVideoIndex - 1 + videos.length) % videos.length;
+        showVideo(prevIndex);
+    }
+    
+    function startAutoPlay() {
+        autoPlayInterval = setInterval(nextVideo, 8000); // Change video every 8 seconds
+    }
+    
+    function stopAutoPlay() {
+        if (autoPlayInterval) {
+            clearInterval(autoPlayInterval);
+        }
+    }
+    
+
+    
+
+    
+    // Pause auto-play on hover
+    const heroSection = document.querySelector('.hero');
+    heroSection.addEventListener('mouseenter', stopAutoPlay);
+    heroSection.addEventListener('mouseleave', startAutoPlay);
+    
+    // Start auto-play
+    startAutoPlay();
+    
+    // Handle video loading and errors gracefully
+    videos.forEach(video => {
+        // Add loading state
+        video.addEventListener('loadstart', () => {
+            video.classList.add('loading');
+        });
+        
+        // Remove loading state when video can play
+        video.addEventListener('canplay', () => {
+            video.classList.remove('loading');
+            video.classList.add('loaded');
+        });
+        
+        // Handle video errors gracefully
+        video.addEventListener('error', () => {
+            console.warn('Video failed to load:', video.src);
+            video.classList.remove('loading');
+            // Fallback to next video if current fails
+            if (video.classList.contains('active')) {
+                nextVideo();
+            }
+        });
+    });
+}
+
+// Initialize video carousel when DOM is loaded
+document.addEventListener('DOMContentLoaded', () => {
+    setupHeroVideoCarousel();
+});
 
 // --- CART STATE ---
 let cart = [];
@@ -623,7 +694,7 @@ if (!document.getElementById('modal-qty-style')) {
     }
     .menu-modal__qty-minus, .menu-modal__qty-plus {
       background: #fff6ee;
-      color: #b88b6a;
+      color: var(--textSecondary);
       border: 2px solid #e7d7c9;
       border-radius: 50%;
       width: 36px;
@@ -638,16 +709,16 @@ if (!document.getElementById('modal-qty-style')) {
       outline: none;
     }
     .menu-modal__qty-minus:hover, .menu-modal__qty-plus:hover {
-      background: #b88b6a;
+      background: var(--textSecondary);
       color: #fff;
-      border-color: #b88b6a;
+      border-color: var(--textSecondary);
     }
     .menu-modal__qty-value {
       min-width: 32px;
       text-align: center;
       font-size: 1.25rem;
       font-weight: 700;
-      color: #2d2d2d;
+      color: var(--textSecondary);
       background: none;
       border: none;
       pointer-events: none;
@@ -685,4 +756,46 @@ function setupMenuSubsectionToggles() {
       toggleSubcat();
     });
   });
-} 
+}
+
+// --- SMOOTH CATEGORY NAVIGATION ---
+document.addEventListener('DOMContentLoaded', function() {
+  const navContainer = document.querySelector('.category-nav__container');
+  if (!navContainer) return;
+
+  let currentCategory = null;
+
+  navContainer.addEventListener('click', async function(e) {
+    const tab = e.target.closest('.category-tab');
+    if (!tab) return;
+    e.preventDefault();
+    if (tab.classList.contains('active')) return; // Already selected
+
+    // Remove active from all, add to clicked
+    navContainer.querySelectorAll('.category-tab').forEach(t => t.classList.remove('active'));
+    tab.classList.add('active');
+
+    // Animate tab (optional, for smoothness)
+    tab.style.transition = 'background 0.3s, color 0.3s, transform 0.2s';
+    tab.style.transform = 'scale(1.08)';
+    setTimeout(() => { tab.style.transform = ''; }, 180);
+
+    // Get category key
+    const filter = tab.getAttribute('href').replace('#', '');
+    if (currentCategory === filter) return;
+    currentCategory = filter;
+
+    // Fetch and render menu for this category
+    const items = await fetchMenuItems();
+    renderMenu(items, filter === 'all' ? null : filter);
+
+    // Open the chosen category section and scroll smoothly
+    setTimeout(() => {
+      const section = document.getElementById(filter);
+      if (section) {
+        section.classList.remove('closed');
+        section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }, 100);
+  });
+}); 

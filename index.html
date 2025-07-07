@@ -9,6 +9,11 @@
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.39.7/dist/umd/supabase.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&family=Noto+Sans:wght@400;500;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
+    
+    <!-- Preload critical videos for instant loading -->
+    <link rel="preload" href="images/video.mp4" as="video" type="video/mp4">
+    <link rel="preload" href="images/video2.mp4" as="video" type="video/mp4">
+    <link rel="preload" href="images/video3.mp4" as="video" type="video/mp4">
 </head>
 <body>
     <!-- Navigation Bar -->
@@ -41,14 +46,22 @@
         </div>
     </header>
 
- 
-
     <!-- Hero Section -->
-    <section id="hero" class="hero" style="background-image: url('images/rest.png');">
+    <!-- Option 1: Video Carousel (Current Implementation) -->
+    <section id="hero" class="hero">
+        <div class="hero-video-container">
+            <video class="hero-video active" src="images/video.mp4" autoplay muted loop playsinline poster="images/rest.png" preload="auto"></video>
+            <video class="hero-video" src="images/video2.mp4" autoplay muted loop playsinline poster="images/rest.png" preload="auto"></video>
+            <video class="hero-video" src="images/video3.mp4" autoplay muted loop playsinline poster="images/rest.png" preload="auto"></video>
+            
+
+            
+
+        </div>
         <div class="hero-overlay"></div>
         <div class="hero-content">
-            <h1 class="hero-title">INDULGE IN SWEETNESS</h1>
-            <p class="hero-subtitle">Get ready for a flavor explosion</p>
+            <h1 class="hero-title">UNFORGETTABLE TASTE</h1>
+            <p class="hero-subtitle">Get ready for a flavor explosion <br><span class="hero-subtitle-highlight">Our menu is a delightful fusion of Belgian and Lebanese flavors, offering you a unique culinary adventure.</span></p>
             <div class="hero-actions">
                 <button class="menu-btn" aria-label="View our menu">
                     <span class="menu-btn-text">View Menu</span>
@@ -66,30 +79,45 @@
             </div>
         </div>
     </section>
-       <!-- Featured Section -->
-       <section class="featured-section">
-        <h2 class="featured-header">Best Seller</h2>
-        <div class="featured-carousel" id="featuredCarousel">
-          <button class="featured-arrow featured-arrow--left" id="featuredArrowLeft" aria-label="Previous">
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none"><path d="M15 19l-7-7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </button>
-          <div class="featured-slide active">
-            <img src="images/pistashiobg.png" alt="Pistachio Dream" class="featured-slide__img" loading="lazy">
-            <div class="featured-slide__name">Croissant L Choco</div>
-          </div>
-          <div class="featured-slide">
-            <img src="images/specialchocopan.png" alt="Special Choco Pan" class="featured-slide__img" loading="lazy">
-            <div class="featured-slide__name">Special Choco Pan</div>
-          </div>
-          <div class="featured-slide">
-            <img src="images/Eclaire Pyramid.png" alt="Eclaire Pyramid" class="featured-slide__img" loading="lazy">
-            <div class="featured-slide__name">Eclaire Pyramid</div>
-          </div>
-          <button class="featured-arrow featured-arrow--right" id="featuredArrowRight" aria-label="Next">
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none"><path d="M9 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </button>
+
+    <!-- Option 2: Video Grid Layout (Alternative - Uncomment to use) -->
+    <!-- 
+    <section id="hero" class="hero hero--grid">
+        <div class="hero-video-grid">
+            <div class="hero-video-grid__main">
+                <video src="images/video.mp4" autoplay muted loop playsinline poster="images/rest.png"></video>
+            </div>
+            <div class="hero-video-grid__side">
+                <div class="hero-video-grid__item">
+                    <video src="images/video2.mp4" autoplay muted loop playsinline poster="images/rest.png"></video>
+                </div>
+                <div class="hero-video-grid__item">
+                    <video src="images/video3.mp4" autoplay muted loop playsinline poster="images/rest.png"></video>
+                </div>
+            </div>
+        </div>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1 class="hero-title">UNFORGETTABLE TASTE</h1>
+            <p class="hero-subtitle">Get ready for a flavor explosion <br><span class="hero-subtitle-highlight">Our menu is a delightful fusion of Belgian and Lebanese flavors, offering you a unique culinary adventure.</span></p>
+            <div class="hero-actions">
+                <button class="menu-btn" aria-label="View our menu">
+                    <span class="menu-btn-text">View Menu</span>
+                    <svg class="menu-btn-icon" width="100%" height="100%" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M7 17L17 7M17 7H7M17 7V17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
+                <button class="contact-btn" aria-label="Contact us">
+                    <span class="contact-btn-text">Contact Us</span>
+                    <svg class="contact-btn-icon" width="100%" height="100%" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M21 10.5V6.75C21 5.23122 19.7688 4 18.25 4H5.75C4.23122 4 3 5.23122 3 6.75V17.25C3 18.7688 4.23122 20 5.75 20H18.25C19.7688 20 21 18.7688 21 17.25V13.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M7 12L12 15L17 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
+            </div>
         </div>
     </section>
+    -->
     <div class="section-separator"></div>
     <nav class="category-nav">
         <div class="category-nav__container">
@@ -171,8 +199,8 @@
           <div class="choco-footer__location">
             <div class="choco-footer__location-name">Achrafieh</div>
             <div class="choco-footer__location-row">
-              <a href="tel:+96170222222" class="choco-footer__location-phone">+961 70 222 222</a>
-              <a href="https://wa.me/96170222222" class="choco-footer__location-whatsapp" aria-label="WhatsApp" target="_blank" rel="noopener">
+              <a href="tel:+96170447434" class="choco-footer__location-phone">+961 70 447 434</a>
+              <a href="https://wa.me/96170447434" class="choco-footer__location-whatsapp" aria-label="WhatsApp" target="_blank" rel="noopener">
                 <svg width="22" height="22" fill="none" viewBox="0 0 24 24"><path d="M20.52 3.48A12.07 12.07 0 0 0 12 0C5.37 0 0 5.37 0 12c0 2.12.55 4.18 1.6 6.02L0 24l6.18-1.6A12.07 12.07 0 0 0 12 24c6.63 0 12-5.37 12-12 0-3.21-1.25-6.23-3.48-8.52ZM12 22c-1.85 0-3.66-.5-5.22-1.44l-.37-.22-3.67.95.98-3.58-.24-.37A9.98 9.98 0 1 1 22 12c0 5.52-4.48 10-10 10Zm5.27-7.4c-.29-.15-1.7-.84-1.96-.94-.26-.1-.45-.15-.64.15-.19.29-.74.94-.91 1.13-.17.19-.34.21-.63.07-.29-.15-1.22-.45-2.33-1.43-.86-.77-1.44-1.72-1.61-2.01-.17-.29-.02-.45.13-.6.13-.13.29-.34.43-.51.14-.17.19-.29.29-.48.1-.19.05-.36-.02-.51-.07-.15-.64-1.54-.88-2.11-.23-.56-.47-.48-.64-.49-.16-.01-.36-.01-.56-.01-.19 0-.5.07-.76.36-.26.29-1 1-.99 2.43.01 1.43 1.03 2.81 1.18 3.01.15.19 2.03 3.1 5.01 4.23.7.24 1.25.38 1.68.48.71.17 1.36.15 1.87.09.57-.07 1.7-.7 1.94-1.37.24-.67.24-1.25.17-1.37-.07-.12-.26-.19-.55-.34Z" fill="currentColor"/></svg>
               </a>
             </div>
@@ -181,8 +209,8 @@
           <div class="choco-footer__location">
             <div class="choco-footer__location-name">Joub Jannine</div>
             <div class="choco-footer__location-row">
-              <a href="tel:+96181333333" class="choco-footer__location-phone">+961 81 333 333</a>
-              <a href="https://wa.me/96181333333" class="choco-footer__location-whatsapp" aria-label="WhatsApp" target="_blank" rel="noopener">
+              <a href="tel:+96176508359" class="choco-footer__location-phone">+961 76 508 359</a>
+              <a href="https://wa.me/96176508359" class="choco-footer__location-whatsapp" aria-label="WhatsApp" target="_blank" rel="noopener">
                 <svg width="22" height="22" fill="none" viewBox="0 0 24 24"><path d="M20.52 3.48A12.07 12.07 0 0 0 12 0C5.37 0 0 5.37 0 12c0 2.12.55 4.18 1.6 6.02L0 24l6.18-1.6A12.07 12.07 0 0 0 12 24c6.63 0 12-5.37 12-12 0-3.21-1.25-6.23-3.48-8.52ZM12 22c-1.85 0-3.66-.5-5.22-1.44l-.37-.22-3.67.95.98-3.58-.24-.37A9.98 9.98 0 1 1 22 12c0 5.52-4.48 10-10 10Zm5.27-7.4c-.29-.15-1.7-.84-1.96-.94-.26-.1-.45-.15-.64.15-.19.29-.74.94-.91 1.13-.17.19-.34.21-.63.07-.29-.15-1.22-.45-2.33-1.43-.86-.77-1.44-1.72-1.61-2.01-.17-.29-.02-.45.13-.6.13-.13.29-.34.43-.51.14-.17.19-.29.29-.48.1-.19.05-.36-.02-.51-.07-.15-.64-1.54-.88-2.11-.23-.56-.47-.48-.64-.49-.16-.01-.36-.01-.56-.01-.19 0-.5.07-.76.36-.26.29-1 1-.99 2.43.01 1.43 1.03 2.81 1.18 3.01.15.19 2.03 3.1 5.01 4.23.7.24 1.25.38 1.68.48.71.17 1.36.15 1.87.09.57-.07 1.7-.7 1.94-1.37.24-.67.24-1.25.17-1.37-.07-.12-.26-.19-.55-.34Z" fill="currentColor"/></svg>
               </a>
             </div>
@@ -191,8 +219,8 @@
           <div class="choco-footer__location">
             <div class="choco-footer__location-name">Ferzol</div>
             <div class="choco-footer__location-row">
-              <a href="tel:+96171444444" class="choco-footer__location-phone">+961 71 444 444</a>
-              <a href="https://wa.me/96171444444" class="choco-footer__location-whatsapp" aria-label="WhatsApp" target="_blank" rel="noopener">
+              <a href="tel:+96170098441" class="choco-footer__location-phone">+961 70 098 441</a>
+              <a href="https://wa.me/96170098441" class="choco-footer__location-whatsapp" aria-label="WhatsApp" target="_blank" rel="noopener">
                 <svg width="22" height="22" fill="none" viewBox="0 0 24 24"><path d="M20.52 3.48A12.07 12.07 0 0 0 12 0C5.37 0 0 5.37 0 12c0 2.12.55 4.18 1.6 6.02L0 24l6.18-1.6A12.07 12.07 0 0 0 12 24c6.63 0 12-5.37 12-12 0-3.21-1.25-6.23-3.48-8.52ZM12 22c-1.85 0-3.66-.5-5.22-1.44l-.37-.22-3.67.95.98-3.58-.24-.37A9.98 9.98 0 1 1 22 12c0 5.52-4.48 10-10 10Zm5.27-7.4c-.29-.15-1.7-.84-1.96-.94-.26-.1-.45-.15-.64.15-.19.29-.74.94-.91 1.13-.17.19-.34.21-.63.07-.29-.15-1.22-.45-2.33-1.43-.86-.77-1.44-1.72-1.61-2.01-.17-.29-.02-.45.13-.6.13-.13.29-.34.43-.51.14-.17.19-.29.29-.48.1-.19.05-.36-.02-.51-.07-.15-.64-1.54-.88-2.11-.23-.56-.47-.48-.64-.49-.16-.01-.36-.01-.56-.01-.19 0-.5.07-.76.36-.26.29-1 1-.99 2.43.01 1.43 1.03 2.81 1.18 3.01.15.19 2.03 3.1 5.01 4.23.7.24 1.25.38 1.68.48.71.17 1.36.15 1.87.09.57-.07 1.7-.7 1.94-1.37.24-.67.24-1.25.17-1.37-.07-.12-.26-.19-.55-.34Z" fill="currentColor"/></svg>
               </a>
             </div>
@@ -223,8 +251,8 @@
           <div class="nav-overlay__location">
             <div class="nav-overlay__location-name">Achrafieh</div>
             <div class="nav-overlay__location-row">
-              <a href="tel:+96170222222" class="nav-overlay__location-phone">+961 70 222 222</a>
-              <a href="https://wa.me/96170222222" class="nav-overlay__location-whatsapp" aria-label="WhatsApp" target="_blank" rel="noopener">
+              <a href="tel:+96170447434" class="nav-overlay__location-phone">+961 70 447 434</a>
+              <a href="https://wa.me/96170447434" class="nav-overlay__location-whatsapp" aria-label="WhatsApp" target="_blank" rel="noopener">
                 <svg width="22" height="22" fill="none" viewBox="0 0 24 24"><path d="M20.52 3.48A12.07 12.07 0 0 0 12 0C5.37 0 0 5.37 0 12c0 2.12.55 4.18 1.6 6.02L0 24l6.18-1.6A12.07 12.07 0 0 0 12 24c6.63 0 12-5.37 12-12 0-3.21-1.25-6.23-3.48-8.52ZM12 22c-1.85 0-3.66-.5-5.22-1.44l-.37-.22-3.67.95.98-3.58-.24-.37A9.98 9.98 0 1 1 22 12c0 5.52-4.48 10-10 10Zm5.27-7.4c-.29-.15-1.7-.84-1.96-.94-.26-.1-.45-.15-.64.15-.19.29-.74.94-.91 1.13-.17.19-.34.21-.63.07-.29-.15-1.22-.45-2.33-1.43-.86-.77-1.44-1.72-1.61-2.01-.17-.29-.02-.45.13-.6.13-.13.29-.34.43-.51.14-.17.19-.29.29-.48.1-.19.05-.36-.02-.51-.07-.15-.64-1.54-.88-2.11-.23-.56-.47-.48-.64-.49-.16-.01-.36-.01-.56-.01-.19 0-.5.07-.76.36-.26.29-1 1-.99 2.43.01 1.43 1.03 2.81 1.18 3.01.15.19 2.03 3.1 5.01 4.23.7.24 1.25.38 1.68.48.71.17 1.36.15 1.87.09.57-.07 1.7-.7 1.94-1.37.24-.67.24-1.25.17-1.37-.07-.12-.26-.19-.55-.34Z" fill="currentColor"/></svg>
               </a>
             </div>
@@ -233,8 +261,8 @@
           <div class="nav-overlay__location">
             <div class="nav-overlay__location-name">Joub Jannine</div>
             <div class="nav-overlay__location-row">
-              <a href="tel:+96170111111" class="nav-overlay__location-phone">+961 70 111 111</a>
-              <a href="https://wa.me/96170111111" class="nav-overlay__location-whatsapp" aria-label="WhatsApp" target="_blank" rel="noopener">
+              <a href="tel:+96176508359" class="nav-overlay__location-phone">+961 76 508 359</a>
+              <a href="https://wa.me/96176508359" class="nav-overlay__location-whatsapp" aria-label="WhatsApp" target="_blank" rel="noopener">
                 <svg width="22" height="22" fill="none" viewBox="0 0 24 24"><path d="M20.52 3.48A12.07 12.07 0 0 0 12 0C5.37 0 0 5.37 0 12c0 2.12.55 4.18 1.6 6.02L0 24l6.18-1.6A12.07 12.07 0 0 0 12 24c6.63 0 12-5.37 12-12 0-3.21-1.25-6.23-3.48-8.52ZM12 22c-1.85 0-3.66-.5-5.22-1.44l-.37-.22-3.67.95.98-3.58-.24-.37A9.98 9.98 0 1 1 22 12c0 5.52-4.48 10-10 10Zm5.27-7.4c-.29-.15-1.7-.84-1.96-.94-.26-.1-.45-.15-.64.15-.19.29-.74.94-.91 1.13-.17.19-.34.21-.63.07-.29-.15-1.22-.45-2.33-1.43-.86-.77-1.44-1.72-1.61-2.01-.17-.29-.02-.45.13-.6.13-.13.29-.34.43-.51.14-.17.19-.29.29-.48.1-.19.05-.36-.02-.51-.07-.15-.64-1.54-.88-2.11-.23-.56-.47-.48-.64-.49-.16-.01-.36-.01-.56-.01-.19 0-.5.07-.76.36-.26.29-1 1-.99 2.43.01 1.43 1.03 2.81 1.18 3.01.15.19 2.03 3.1 5.01 4.23.7.24 1.25.38 1.68.48.71.17 1.36.15 1.87.09.57-.07 1.7-.7 1.94-1.37.24-.67.24-1.25.17-1.37-.07-.12-.26-.19-.55-.34Z" fill="currentColor"/></svg>
               </a>
             </div>
@@ -243,8 +271,8 @@
           <div class="nav-overlay__location">
             <div class="nav-overlay__location-name">Ferzol</div>
             <div class="nav-overlay__location-row">
-              <a href="tel:+96170333333" class="nav-overlay__location-phone">+961 70 333 333</a>
-              <a href="https://wa.me/96170333333" class="nav-overlay__location-whatsapp" aria-label="WhatsApp" target="_blank" rel="noopener">
+              <a href="tel:+96170098441" class="nav-overlay__location-phone">+961 70 098 441</a>
+              <a href="https://wa.me/96170098441" class="nav-overlay__location-whatsapp" aria-label="WhatsApp" target="_blank" rel="noopener">
                 <svg width="22" height="22" fill="none" viewBox="0 0 24 24"><path d="M20.52 3.48A12.07 12.07 0 0 0 12 0C5.37 0 0 5.37 0 12c0 2.12.55 4.18 1.6 6.02L0 24l6.18-1.6A12.07 12.07 0 0 0 12 24c6.63 0 12-5.37 12-12 0-3.21-1.25-6.23-3.48-8.52ZM12 22c-1.85 0-3.66-.5-5.22-1.44l-.37-.22-3.67.95.98-3.58-.24-.37A9.98 9.98 0 1 1 22 12c0 5.52-4.48 10-10 10Zm5.27-7.4c-.29-.15-1.7-.84-1.96-.94-.26-.1-.45-.15-.64.15-.19.29-.74.94-.91 1.13-.17.19-.34.21-.63.07-.29-.15-1.22-.45-2.33-1.43-.86-.77-1.44-1.72-1.61-2.01-.17-.29-.02-.45.13-.6.13-.13.29-.34.43-.51.14-.17.19-.29.29-.48.1-.19.05-.36-.02-.51-.07-.15-.64-1.54-.88-2.11-.23-.56-.47-.48-.64-.49-.16-.01-.36-.01-.56-.01-.19 0-.5.07-.76.36-.26.29-1 1-.99 2.43.01 1.43 1.03 2.81 1.18 3.01.15.19 2.03 3.1 5.01 4.23.7.24 1.25.38 1.68.48.71.17 1.36.15 1.87.09.57-.07 1.7-.7 1.94-1.37.24-.67.24-1.25.17-1.37-.07-.12-.26-.19-.55-.34Z" fill="currentColor"/></svg>
               </a>
             </div>
