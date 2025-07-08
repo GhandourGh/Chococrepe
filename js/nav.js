@@ -104,26 +104,37 @@ document.addEventListener('DOMContentLoaded', function() {
     // Menu button functionality (if exists)
     if (menuBtn) {
         menuBtn.addEventListener('click', function(e) {
-            e.preventDefault();
-            // Add click feedback
-            menuBtn.style.transform = 'scale(0.98)';
-            setTimeout(() => {
-                menuBtn.style.transform = '';
-            }, 150);
-            // Scroll to menu section if it exists
-            if (menuSection) {
-                menuSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            // Only prevent default if this is a JavaScript action button (not a navigation link)
+            const href = menuBtn.getAttribute('href');
+            if (!href || href === '#') {
+                e.preventDefault();
+                // Add click feedback
+                menuBtn.style.transform = 'scale(0.98)';
+                setTimeout(() => {
+                    menuBtn.style.transform = '';
+                }, 150);
+                // Scroll to menu section if it exists
+                if (menuSection) {
+                    menuSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
             }
         });
     }
 
     // Contact button functionality (if exists)
-    if (contactBtn && footer) {
+    if (contactBtn) {
         contactBtn.addEventListener('click', function(e) {
-            e.preventDefault();
-            contactBtn.style.transform = 'scale(0.98)';
-            setTimeout(() => { contactBtn.style.transform = ''; }, 150);
-            footer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            // Only prevent default if this is a JavaScript action button (not a navigation link)
+            const href = contactBtn.getAttribute('href');
+            if (!href || href === '#') {
+                e.preventDefault();
+                contactBtn.style.transform = 'scale(0.98)';
+                setTimeout(() => { contactBtn.style.transform = ''; }, 150);
+                // Scroll to footer if it exists
+                if (footer) {
+                    footer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            }
         });
     }
 }); 
