@@ -237,7 +237,10 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // --- CART STATE ---
-let cart = [];
+let cart = JSON.parse(localStorage.getItem('chocoCart')) || [];
+
+// Make cart globally accessible
+window.cart = cart;
 
 // --- DOM ELEMENTS ---
 const cartButton = document.querySelector('.cart-btn');
@@ -258,7 +261,12 @@ function updateCartBadge() {
     } else {
         cartBadge.classList.remove('show');
     }
+    // Save to localStorage
+    localStorage.setItem('chocoCart', JSON.stringify(cart));
 }
+
+// Make updateCartBadge globally accessible
+window.updateCartBadge = updateCartBadge;
 
 // --- CART MODAL RENDER ---
 function renderCartModal() {
@@ -502,9 +510,19 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     navOverlayLinks.forEach(link => {
         link.addEventListener('click', function(e) {
+            const href = link.getAttribute('href');
+            const nav = link.getAttribute('data-nav');
+            
+            // Handle regular page links (catering.html, brand.html, locations.html)
+            if (href && href !== '#' && !nav) {
+                // Allow normal navigation for page links
+                return;
+            }
+            
+            // Handle internal navigation
             e.preventDefault();
             closeNavOverlay();
-            const nav = link.getAttribute('data-nav');
+            
             if (nav === 'menu' && menuSection) {
                 menuSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
             } else if (nav === 'contact' && footer) {

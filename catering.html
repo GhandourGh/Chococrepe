@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catering - Choco's Sweet Events</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&family=Noto+Sans:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <header class="header">
+        <button class="hamburger-btn" aria-label="Open menu">
+            <svg width="100%" height="100%" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M3 12H21M3 6H21M3 18H21" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </button>
+        
+        <div class="logo-container">
+            <img src="images/logo.png" alt="Choco's Logo" class="logo">
+        </div>
+        
+        <div class="header-controls">
+            <button class="cart-btn" aria-label="Shopping cart">
+                <svg width="100%" height="100%" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M9 22C9.55228 22 10 21.5523 10 21C10 20.4477 9.55228 20 9 20C8.44772 20 8 20.4477 8 21C8 21.5523 8.44772 22 9 22Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M20 22C20.5523 22 21 21.5523 21 21C21 20.4477 20.5523 20 20 20C19.4477 20 19 20.4477 19 21C19 21.5523 19.4477 22 20 22Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M1 1H5L7.68 14.39C7.77144 14.8504 8.02191 15.264 8.38755 15.5583C8.75318 15.8526 9.2107 16.009 9.68 16H19.4C19.8693 16.009 20.3268 15.8526 20.6925 15.5583C21.0581 15.264 21.3086 14.8504 21.4 14.39L23 6H6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <span class="cart-badge" id="cartBadge">0</span>
+            </button>
+            
+            <a href="tel:+96170447434" class="phone-link" aria-label="Call us">
+                <svg width="100%" height="100%" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M22 16.92V19.92C22.0011 20.1985 21.9441 20.4742 21.8325 20.7293C21.7209 20.9844 21.5573 21.2136 21.3521 21.4019C21.1469 21.5902 20.9046 21.7335 20.6407 21.8227C20.3769 21.9119 20.0973 21.9454 19.82 21.92C16.7428 21.5856 13.787 20.5341 11.19 18.85C8.77382 17.3146 6.72533 15.2661 5.18999 12.85C3.49997 10.2412 2.44824 7.27099 2.11999 4.18C2.09461 3.90347 2.12787 3.62476 2.21649 3.36162C2.30512 3.09849 2.44756 2.85669 2.63476 2.6518C2.82196 2.44691 3.0498 2.28335 3.30351 2.17137C3.55722 2.05939 3.83149 2.00152 4.10999 2H7.10999C7.59522 1.99522 8.06574 2.16708 8.43376 2.48353C8.80178 2.79999 9.04201 3.23945 9.10999 3.72C9.23662 4.68007 9.47144 5.62273 9.80999 6.53C9.94454 6.88792 9.97348 7.27675 9.89381 7.65343C9.81415 8.03011 9.62976 8.37754 9.35999 8.65L8.08999 9.92C9.51355 12.4135 11.5865 14.4865 14.08 15.91L15.35 14.64C15.6225 14.3702 15.9699 14.1858 16.3466 14.1062C16.7233 14.0265 17.1121 14.0555 17.47 14.19C18.3773 14.5286 19.3199 14.7634 20.28 14.89C20.7658 14.9585 21.2094 15.2032 21.5265 15.5775C21.8437 15.9518 22.0122 16.4296 22 16.92Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero catering-hero">
+        <div class="hero-image-container">
+            <img src="images/AchrafiehLocation.png" alt="Choco's Achrafieh Location" class="hero-image">
+        </div>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1 class="hero-title">CATERING SERVICES</h1>
+            <p class="hero-subtitle">Make your events unforgettable with our premium catering services. From corporate events to private celebrations, we bring the magic of Choco's to your special occasions.</p>
+            <div class="hero-actions">
+                <a href="tel:+96170447434" class="menu-btn" aria-label="Call for catering">
+                    <span class="menu-btn-text">Call for Quote</span>
+                    <svg class="menu-btn-icon" width="100%" height="100%" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M22 16.92V19.92C22.0011 20.1985 21.9441 20.4742 21.8325 20.7293C21.7209 20.9844 21.5573 21.2136 21.3521 21.4019C21.1469 21.5902 20.9046 21.7335 20.6407 21.8227C20.3769 21.9119 20.0973 21.9454 19.82 21.92C16.7428 21.5856 13.787 20.5341 11.19 18.85C8.77382 17.3146 6.72533 15.2661 5.18999 12.85C3.49997 10.2412 2.44824 7.27099 2.11999 4.18C2.09461 3.90347 2.12787 3.62476 2.21649 3.36162C2.30512 3.09849 2.44756 2.85669 2.63476 2.6518C2.82196 2.44691 3.0498 2.28335 3.30351 2.17137C3.55722 2.05939 3.83149 2.00152 4.10999 2H7.10999C7.59522 1.99522 8.06574 2.16708 8.43376 2.48353C8.80178 2.79999 9.04201 3.23945 9.10999 3.72C9.23662 4.68007 9.47144 5.62273 9.80999 6.53C9.94454 6.88792 9.97348 7.27675 9.89381 7.65343C9.81415 8.03011 9.62976 8.37754 9.35999 8.65L8.08999 9.92C9.51355 12.4135 11.5865 14.4865 14.08 15.91L15.35 14.64C15.6225 14.3702 15.9699 14.1858 16.3466 14.1062C16.7233 14.0265 17.1121 14.0555 17.47 14.19C18.3773 14.5286 19.3199 14.7634 20.28 14.89C20.7658 14.9585 21.2094 15.2032 21.5265 15.5775C21.8437 15.9518 22.0122 16.4296 22 16.92Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </a>
+                <a href="index.html" class="contact-btn" aria-label="Back to menu">
+                    <span class="contact-btn-text">View Menu</span>
+                    <svg class="contact-btn-icon" width="100%" height="100%" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-separator"></div>
+
+    <!-- Catering Services Section -->
+    <section class="catering-services">
+        <div class="catering-container">
+            <h2 class="catering-title">Our Catering Services</h2>
+            
+            <div class="catering-grid">
+                <div class="catering-card">
+                    <div class="catering-card__icon">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M2 17L12 22L22 17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M2 12L12 17L22 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <h3 class="catering-card__title">Corporate Events</h3>
+                    <p class="catering-card__description">Perfect for business meetings, conferences, and corporate celebrations. We provide professional service with customizable menus.</p>
+                </div>
+
+                <div class="catering-card">
+                    <div class="catering-card__icon">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M20.84 4.61C20.3292 4.099 19.7228 3.69364 19.0554 3.41708C18.3879 3.14052 17.6725 2.99817 16.95 2.99817C16.2275 2.99817 15.5121 3.14052 14.8446 3.41708C14.1772 3.69364 13.5708 4.099 13.06 4.61L12 5.67L10.94 4.61C9.9083 3.5783 8.50903 2.9987 7.05 2.9987C5.59096 2.9987 4.19169 3.5783 3.16 4.61C2.1283 5.64169 1.5487 7.04097 1.5487 8.5C1.5487 9.95903 2.1283 11.3583 3.16 12.39L12 21.23L20.84 12.39C21.351 11.8792 21.7564 11.2728 22.0329 10.6054C22.3095 9.93789 22.4518 9.22249 22.4518 8.5C22.4518 7.77751 22.3095 7.0621 22.0329 6.39464C21.7564 5.72718 21.351 5.12075 20.84 4.61Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <h3 class="catering-card__title">Private Parties</h3>
+                    <p class="catering-card__description">Birthdays, anniversaries, and special celebrations. We create memorable experiences with our signature desserts and drinks.</p>
+                </div>
+
+                <div class="catering-card">
+                    <div class="catering-card__icon">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M8 2V5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M16 2V5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <rect x="3" y="4" width="18" height="18" rx="2" stroke="currentColor" stroke-width="2"/>
+                            <line x1="16" y1="2" x2="8" y2="2" stroke="currentColor" stroke-width="2"/>
+                            <path d="M8 10H16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                            <path d="M8 14H16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                            <path d="M8 18H16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <h3 class="catering-card__title">Weddings & Events</h3>
+                    <p class="catering-card__description">Make your special day even more memorable with our elegant dessert tables and custom wedding cakes.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-separator"></div>
+
+    <!-- Contact Section -->
+    <section class="catering-contact">
+        <div class="catering-container">
+            <h2 class="catering-title">Get Your Quote</h2>
+            <p class="catering-subtitle">Ready to make your event unforgettable? Contact us for a personalized quote and consultation.</p>
+            
+            <div class="contact-methods">
+                <a href="tel:+96170447434" class="contact-method">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M22 16.92V19.92C22.0011 20.1985 21.9441 20.4742 21.8325 20.7293C21.7209 20.9844 21.5573 21.2136 21.3521 21.4019C21.1469 21.5902 20.9046 21.7335 20.6407 21.8227C20.3769 21.9119 20.0973 21.9454 19.82 21.92C16.7428 21.5856 13.787 20.5341 11.19 18.85C8.77382 17.3146 6.72533 15.2661 5.18999 12.85C3.49997 10.2412 2.44824 7.27099 2.11999 4.18C2.09461 3.90347 2.12787 3.62476 2.21649 3.36162C2.30512 3.09849 2.44756 2.85669 2.63476 2.6518C2.82196 2.44691 3.0498 2.28335 3.30351 2.17137C3.55722 2.05939 3.83149 2.00152 4.10999 2H7.10999C7.59522 1.99522 8.06574 2.16708 8.43376 2.48353C8.80178 2.79999 9.04201 3.23945 9.10999 3.72C9.23662 4.68007 9.47144 5.62273 9.80999 6.53C9.94454 6.88792 9.97348 7.27675 9.89381 7.65343C9.81415 8.03011 9.62976 8.37754 9.35999 8.65L8.08999 9.92C9.51355 12.4135 11.5865 14.4865 14.08 15.91L15.35 14.64C15.6225 14.3702 15.9699 14.1858 16.3466 14.1062C16.7233 14.0265 17.1121 14.0555 17.47 14.19C18.3773 14.5286 19.3199 14.7634 20.28 14.89C20.7658 14.9585 21.2094 15.2032 21.5265 15.5775C21.8437 15.9518 22.0122 16.4296 22 16.92Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <span>Call: +961 70 447 434</span>
+                </a>
+                
+                <a href="https://wa.me/96170447434" class="contact-method">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M17.498 14.382c-.301-.15-1.767-.867-2.04-.966-.273-.101-.473-.15-.673.15-.197.295-.771.964-.944 1.162-.175.195-.349.21-.646.075-.3-.15-1.263-.465-2.403-1.485-.888-.795-1.484-1.77-1.66-2.07-.174-.3-.019-.465.13-.615.136-.135.301-.345.451-.523.146-.181.194-.301.297-.496.1-.21.049-.375-.025-.524-.075-.15-.672-1.62-.922-2.206-.24-.584-.487-.5-.672-.51-.172-.008-.371-.01-.571-.01-.2 0-.523.074-.797.359-.273.3-1.045 1.02-1.045 2.475s1.07 2.865 1.219 3.075c.149.195 2.105 3.195 5.077 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414-.074-.124-.272-.198-.57-.348m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.49 3.488" fill="currentColor"/>
+                    </svg>
+                    <span>WhatsApp</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Navigation Overlay -->
+    <div id="navOverlay" class="nav-overlay" style="display:none;">
+      <button class="nav-overlay__close" id="navOverlayClose" aria-label="Close menu">&times;</button>
+      <div class="nav-overlay__content">
+        <img src="images/logo.png" alt="Choco's Logo" class="nav-overlay__logo" />
+        <div class="nav-overlay__social">
+                      <a href="https://www.tiktok.com/@chococrepe2" class="nav-overlay__social-icon" aria-label="TikTok" target="_blank" rel="noopener">
+              <svg width="28" height="28" fill="none" viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-.88-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z" fill="currentColor"/></svg>
+            </a>
+            <a href="https://www.instagram.com/choco.crepe/" class="nav-overlay__social-icon" aria-label="Instagram" target="_blank" rel="noopener">
+            <svg width="28" height="28" fill="none" viewBox="0 0 24 24"><rect width="18" height="18" x="3" y="3" rx="5" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="2"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
+          </a>
+        </div>
+        <ul class="nav-overlay__list">
+          <li><a href="index.html" class="nav-overlay__link">View Menu</a></li>
+          <li><a href="catering.html" class="nav-overlay__link">Catering</a></li>
+          <li><a href="brand.html" class="nav-overlay__link">Brand</a></li>
+          <li><a href="locations.html" class="nav-overlay__link">Locations</a></li>
+          <li><a href="#" class="nav-overlay__link" data-nav="contact">Contact Us</a></li>
+          <li><a href="#" class="nav-overlay__link" data-nav="cart">Cart</a></li>
+        </ul>
+        <div class="nav-overlay__locations">
+          <div class="nav-overlay__location">
+            <div class="nav-overlay__location-name">Achrafieh</div>
+            <div class="nav-overlay__location-row">
+              <a href="tel:+96170447434" class="nav-overlay__location-phone">+961 70 447 434</a>
+              <a href="https://wa.me/96170447434" class="nav-overlay__location-whatsapp" aria-label="WhatsApp" target="_blank" rel="noopener">
+                <svg width="22" height="22" fill="none" viewBox="0 0 24 24"><path d="M20.52 3.48A12.07 12.07 0 0 0 12 0C5.37 0 0 5.37 0 12c0 2.12.55 4.18 1.6 6.02L0 24l6.18-1.6A12.07 12.07 0 0 0 12 24c6.63 0 12-5.37 12-12 0-3.21-1.25-6.23-3.48-8.52ZM12 22c-1.85 0-3.66-.5-5.22-1.44l-.37-.22-3.67.95.98-3.58-.24-.37A9.98 9.98 0 1 1 22 12c0 5.52-4.48 10-10 10Zm5.27-7.4c-.29-.15-1.7-.84-1.96-.94-.26-.1-.45-.15-.64.15-.19.29-.74.94-.91 1.13-.17.19-.34.21-.63.07-.29-.15-1.22-.45-2.33-1.43-.86-.77-1.44-1.72-1.61-2.01-.17-.29-.02-.45.13-.6.13-.13.29-.34.43-.51.14-.17.19-.29.29-.48.1-.19.05-.36-.02-.51-.07-.15-.64-1.54-.88-2.11-.23-.56-.47-.48-.64-.49-.16-.01-.36-.01-.56-.01-.19 0-.5.07-.76.36-.26.29-1 1-.99 2.43.01 1.43 1.03 2.81 1.18 3.01.15.19 2.03 3.1 5.01 4.23.7.24 1.25.38 1.68.48.71.17 1.36.15 1.87.09.57-.07 1.7-.7 1.94-1.37.24-.67.24-1.25.17-1.37-.07-.12-.26-.19-.55-.34Z" fill="currentColor"/></svg>
+              </a>
+            </div>
+            <a href="https://maps.app.goo.gl/fhC4WtZ8a2iXBF446" class="nav-overlay__location-map" target="_blank" rel="noopener">Visit us</a>
+          </div>
+          <div class="nav-overlay__location">
+            <div class="nav-overlay__location-name">Joub Jannine</div>
+            <div class="nav-overlay__location-row">
+              <a href="tel:+96176508350" class="nav-overlay__location-phone">+961 76 508 350</a>
+              <a href="https://wa.me/96176508350" class="nav-overlay__location-whatsapp" aria-label="WhatsApp" target="_blank" rel="noopener">
+                <svg width="22" height="22" fill="none" viewBox="0 0 24 24"><path d="M20.52 3.48A12.07 12.07 0 0 0 12 0C5.37 0 0 5.37 0 12c0 2.12.55 4.18 1.6 6.02L0 24l6.18-1.6A12.07 12.07 0 0 0 12 24c6.63 0 12-5.37 12-12 0-3.21-1.25-6.23-3.48-8.52ZM12 22c-1.85 0-3.66-.5-5.22-1.44l-.37-.22-3.67.95.98-3.58-.24-.37A9.98 9.98 0 1 1 22 12c0 5.52-4.48 10-10 10Zm5.27-7.4c-.29-.15-1.7-.84-1.96-.94-.26-.1-.45-.15-.64.15-.19.29-.74.94-.91 1.13-.17.19-.34.21-.63.07-.29-.15-1.22-.45-2.33-1.43-.86-.77-1.44-1.72-1.61-2.01-.17-.29-.02-.45.13-.6.13-.13.29-.34.43-.51.14-.17.19-.29.29-.48.1-.19.05-.36-.02-.51-.07-.15-.64-1.54-.88-2.11-.23-.56-.47-.48-.64-.49-.16-.01-.36-.01-.56-.01-.19 0-.5.07-.76.36-.26.29-1 1-.99 2.43.01 1.43 1.03 2.81 1.18 3.01.15.19 2.03 3.1 5.01 4.23.7.24 1.25.38 1.68.48.71.17 1.36.15 1.87.09.57-.07 1.7-.7 1.94-1.37.24-.67.24-1.25.17-1.37-.07-.12-.26-.19-.55-.34Z" fill="currentColor"/></svg>
+              </a>
+            </div>
+            <a href="https://maps.app.goo.gl/i8WPvm5SRMQseqX3A" class="nav-overlay__location-map" target="_blank" rel="noopener">Visit us</a>
+          </div>
+          <div class="nav-overlay__location">
+            <div class="nav-overlay__location-name">Ferzol</div>
+            <div class="nav-overlay__location-row">
+              <a href="tel:+96170098441" class="nav-overlay__location-phone">+961 70 098 441</a>
+              <a href="https://wa.me/96170098441" class="nav-overlay__location-whatsapp" aria-label="WhatsApp" target="_blank" rel="noopener">
+                <svg width="22" height="22" fill="none" viewBox="0 0 24 24"><path d="M20.52 3.48A12.07 12.07 0 0 0 12 0C5.37 0 0 5.37 0 12c0 2.12.55 4.18 1.6 6.02L0 24l6.18-1.6A12.07 12.07 0 0 0 12 24c6.63 0 12-5.37 12-12 0-3.21-1.25-6.23-3.48-8.52ZM12 22c-1.85 0-3.66-.5-5.22-1.44l-.37-.22-3.67.95.98-3.58-.24-.37A9.98 9.98 0 1 1 22 12c0 5.52-4.48 10-10 10Zm5.27-7.4c-.29-.15-1.7-.84-1.96-.94-.26-.1-.45-.15-.64.15-.19.29-.74.94-.91 1.13-.17.19-.34.21-.63.07-.29-.15-1.22-.45-2.33-1.43-.86-.77-1.44-1.72-1.61-2.01-.17-.29-.02-.45.13-.6.13-.13.29-.34.43-.51.14-.17.19-.29.29-.48.1-.19.05-.36-.02-.51-.07-.15-.64-1.54-.88-2.11-.23-.56-.47-.48-.64-.49-.16-.01-.36-.01-.56-.01-.19 0-.5.07-.76.36-.26.29-1 1-.99 2.43.01 1.43 1.03 2.81 1.18 3.01.15.19 2.03 3.1 5.01 4.23.7.24 1.25.38 1.68.48.71.17 1.36.15 1.87.09.57-.07 1.7-.7 1.94-1.37.24-.67.24-1.25.17-1.37-.07-.12-.26-.19-.55-.34Z" fill="currentColor"/></svg>
+              </a>
+            </div>
+            <a href="https://maps.app.goo.gl/wR7vZZ31kRzfHwqP6" class="nav-overlay__location-map" target="_blank" rel="noopener">Visit us</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer class="choco-footer">
+        <div class="choco-footer__content">
+            <img src="images/logo.png" alt="Choco's Logo" class="choco-footer__logo" />
+            <div class="choco-footer__copyright">© 2025 Choco Crepe. All rights reserved.</div>
+            <div class="choco-footer__social">
+                            <a href="https://www.tiktok.com/@chococrepe2" class="choco-footer__social-icon" aria-label="TikTok" target="_blank" rel="noopener">
+              <svg width="24" height="24" fill="none" viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-.88-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z" fill="currentColor"/></svg>
+            </a>
+            <a href="https://www.instagram.com/choco.crepe/" class="choco-footer__social-icon" aria-label="Instagram" target="_blank" rel="noopener">
+                    <svg width="24" height="24" fill="none" viewBox="0 0 24 24"><rect width="18" height="18" x="3" y="3" rx="5" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="2"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
+    <script src="nav.js"></script>
+    <script src="cart.js"></script>
+    <div id="cart-modal" class="menu-modal cart-modal" aria-modal="true" role="dialog" tabindex="-1" style="display:none;">
+        <div class="menu-modal__overlay cart-modal__overlay"></div>
+        <div class="menu-modal__content cart-modal__content" role="document">
+            <button class="menu-modal__close cart-modal__close" aria-label="Close">&times;</button>
+            <h2 class="cart-modal__title">Your Cart</h2>
+            <div class="cart-modal__items"></div>
+            <div class="cart-modal__footer">
+                <div class="cart-modal__total-row">
+                    <span class="cart-modal__total-label">Total:</span>
+                    <span class="cart-modal__total-value">$0.00</span>
+                </div>
+                <button class="cart-modal__clear">Clear Cart</button>
+                <a href="tel:+96170222222" class="cart-modal__order-btn">Call to Order</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html> 
