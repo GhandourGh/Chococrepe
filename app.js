@@ -5,6 +5,9 @@ const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
 const menuSections = document.getElementById('menuSections');
 
+// Only initialize menu functionality if we're on a page with menu sections
+if (menuSections) {
+
 const DRINK_SUBCATEGORIES = [
   'Milkshakes',
   'Smoothies',
@@ -136,6 +139,7 @@ supabase
     }
   )
   .subscribe();
+}
 // --- END SUPABASE DYNAMIC MENU ---
 
 // --- HERO VIDEO CAROUSEL ---
@@ -233,7 +237,10 @@ function setupHeroVideoCarousel() {
 
 // Initialize video carousel when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
-    setupHeroVideoCarousel();
+    const videos = document.querySelectorAll('.hero-video');
+    if (videos.length > 0) {
+        setupHeroVideoCarousel();
+    }
 });
 
 // --- CART STATE ---
@@ -246,11 +253,14 @@ window.cart = cart;
 const cartButton = document.querySelector('.cart-btn');
 const cartBadge = document.getElementById('cartBadge');
 const cartModal = document.getElementById('cart-modal');
-const cartModalOverlay = cartModal.querySelector('.cart-modal__overlay');
-const cartModalClose = cartModal.querySelector('.cart-modal__close');
-const cartModalItems = cartModal.querySelector('.cart-modal__items');
-const cartModalTotal = cartModal.querySelector('.cart-modal__total-value');
-const cartModalClear = cartModal.querySelector('.cart-modal__clear');
+
+// Only initialize cart functionality if elements exist
+if (cartButton && cartBadge && cartModal) {
+    const cartModalOverlay = cartModal.querySelector('.cart-modal__overlay');
+    const cartModalClose = cartModal.querySelector('.cart-modal__close');
+    const cartModalItems = cartModal.querySelector('.cart-modal__items');
+    const cartModalTotal = cartModal.querySelector('.cart-modal__total-value');
+    const cartModalClear = cartModal.querySelector('.cart-modal__clear');
 
 // --- CART BADGE ---
 function updateCartBadge() {
@@ -448,6 +458,7 @@ function setupMenuItemModal() {
     });
 }
 document.addEventListener('DOMContentLoaded', setupMenuItemModal);
+}
 
 // Initialize cart badge on page load
 document.addEventListener('DOMContentLoaded', function() {
@@ -484,6 +495,9 @@ document.addEventListener('DOMContentLoaded', function() {
     const menuSection = document.getElementById('menuSections');
     const footer = document.querySelector('.choco-footer');
     const cartButton = document.querySelector('.cart-btn');
+
+    // Only initialize nav overlay if required elements exist
+    if (hamburgerBtn && navOverlay && navOverlayClose) {
 
     function openNavOverlay() {
         navOverlay.style.display = 'flex';
@@ -532,11 +546,13 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
+    }
 });
 
 // Menu button functionality
 const menuBtn = document.querySelector('.menu-btn');
-menuBtn.addEventListener('click', function() {
+if (menuBtn) {
+    menuBtn.addEventListener('click', function() {
     // Add click feedback
     menuBtn.style.transform = 'scale(0.98)';
     setTimeout(() => {
@@ -548,7 +564,8 @@ menuBtn.addEventListener('click', function() {
     
     // Optional: Add smooth scroll to menu section when implemented
     // document.querySelector('#menu-section').scrollIntoView({ behavior: 'smooth' });
-});
+    });
+}
 
 // Performance optimization: Lazy load images
 document.addEventListener('DOMContentLoaded', function() {
@@ -572,6 +589,7 @@ document.addEventListener('DOMContentLoaded', function() {
 // Dropdown toggles for menu sections
 function setupMenuSectionToggles() {
     const sections = document.querySelectorAll('.menu-section');
+    if (sections.length === 0) return;
     sections.forEach(section => {
         const header = section.querySelector('.menu-section__header');
         const toggle = section.querySelector('.menu-section__toggle');
@@ -746,7 +764,9 @@ if (!document.getElementById('modal-qty-style')) {
 }
 
 function setupMenuSubsectionToggles() {
-  document.querySelectorAll('.menu-section#drinks .menu-subsection').forEach(subsection => {
+  const subsections = document.querySelectorAll('.menu-section#drinks .menu-subsection');
+  if (subsections.length === 0) return;
+  subsections.forEach(subsection => {
     const header = subsection.querySelector('.menu-subsection__header');
     const toggle = subsection.querySelector('.menu-subsection__toggle');
     const items = subsection.nextElementSibling;
@@ -779,7 +799,8 @@ function setupMenuSubsectionToggles() {
 // --- SMOOTH CATEGORY NAVIGATION ---
 document.addEventListener('DOMContentLoaded', function() {
   const navContainer = document.querySelector('.category-nav__container');
-  if (!navContainer) return;
+  const menuSections = document.getElementById('menuSections');
+  if (!navContainer || !menuSections) return;
 
   let currentCategory = null;
 
