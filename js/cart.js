@@ -20,12 +20,12 @@ document.addEventListener('DOMContentLoaded', function() {
     // --- CART BADGE ---
     function updateCartBadge() {
         if (!cartBadge) return;
-        // Use the global cart variable from app.js if available, otherwise use localStorage
+        // Use the global cart variable from app.js if available, otherwise use sessionStorage
         let cart = [];
         if (typeof window.cart !== 'undefined') {
             cart = window.cart;
         } else {
-            cart = JSON.parse(localStorage.getItem('chocoCart')) || [];
+            cart = JSON.parse(sessionStorage.getItem('chocoCart')) || [];
         }
         
         const count = cart.reduce((sum, item) => sum + item.qty, 0);
@@ -37,27 +37,27 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // --- SAVE CART TO LOCALSTORAGE ---
+    // --- SAVE CART TO SESSIONSTORAGE ---
     function saveCart() {
         let cart = [];
         if (typeof window.cart !== 'undefined') {
             cart = window.cart;
         } else {
-            cart = JSON.parse(localStorage.getItem('chocoCart')) || [];
+            cart = JSON.parse(sessionStorage.getItem('chocoCart')) || [];
         }
-        localStorage.setItem('chocoCart', JSON.stringify(cart));
+        sessionStorage.setItem('chocoCart', JSON.stringify(cart));
     }
 
     // --- CART MODAL RENDER ---
     function renderCartModal() {
         if (!cartModalItems) return;
         
-        // Use the global cart variable from app.js if available, otherwise use localStorage
+        // Use the global cart variable from app.js if available, otherwise use sessionStorage
         let cart = [];
         if (typeof window.cart !== 'undefined') {
             cart = window.cart;
         } else {
-            cart = JSON.parse(localStorage.getItem('chocoCart')) || [];
+            cart = JSON.parse(sessionStorage.getItem('chocoCart')) || [];
         }
         
         cartModalItems.innerHTML = '';
@@ -134,9 +134,9 @@ document.addEventListener('DOMContentLoaded', function() {
                         window.updateCartBadge();
                     }
                 } else {
-                    let cart = JSON.parse(localStorage.getItem('chocoCart')) || [];
+                    let cart = JSON.parse(sessionStorage.getItem('chocoCart')) || [];
                     cart.splice(idx, 1);
-                    localStorage.setItem('chocoCart', JSON.stringify(cart));
+                    sessionStorage.setItem('chocoCart', JSON.stringify(cart));
                 }
                 updateCartBadge();
                 renderCartModal();
@@ -154,7 +154,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     window.updateCartBadge();
                 }
             } else {
-                localStorage.setItem('chocoCart', JSON.stringify([]));
+                sessionStorage.setItem('chocoCart', JSON.stringify([]));
             }
             updateCartBadge();
             renderCartModal();
@@ -176,14 +176,14 @@ document.addEventListener('DOMContentLoaded', function() {
                 window.updateCartBadge();
             }
         } else {
-            let cart = JSON.parse(localStorage.getItem('chocoCart')) || [];
+            let cart = JSON.parse(sessionStorage.getItem('chocoCart')) || [];
             const idx = cart.findIndex(i => i.name === name && i.price === price && i.img === img);
             if (idx > -1) {
                 cart[idx].qty += qty;
             } else {
                 cart.push({ name, price, img, qty });
             }
-            localStorage.setItem('chocoCart', JSON.stringify(cart));
+            sessionStorage.setItem('chocoCart', JSON.stringify(cart));
         }
         updateCartBadge();
     };

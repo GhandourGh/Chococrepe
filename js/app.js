@@ -5,6 +5,21 @@ const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
 const menuSections = document.getElementById('menuSections');
 
+// Always define fetchMenuItems so it is available globally
+async function fetchMenuItems() {
+  const { data, error } = await supabase
+    .from('menu_items')
+    .select('*')
+    .order('category')
+    .order('subcategory')
+    .order('name');
+  if (error && menuSections) {
+    menuSections.innerHTML = '<p class="error">Failed to load menu.</p>';
+    return [];
+  }
+  return data;
+}
+
 // Only initialize menu functionality if we're on a page with menu sections
 if (menuSections) {
 
@@ -31,20 +46,6 @@ const CATEGORY_MAP = {
 function getImageUrl(imagePath) {
   if (!imagePath) return '';
   return `${SUPABASE_URL}/storage/v1/object/public/menu-images/${imagePath}`;
-}
-
-async function fetchMenuItems() {
-  const { data, error } = await supabase
-    .from('menu_items')
-    .select('*')
-    .order('category')
-    .order('subcategory')
-    .order('name');
-  if (error) {
-    menuSections.innerHTML = '<p class="error">Failed to load menu.</p>';
-    return [];
-  }
-  return data;
 }
 
 function renderMenu(items, filterCategory = null) {

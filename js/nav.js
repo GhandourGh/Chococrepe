@@ -14,8 +14,20 @@ document.addEventListener('DOMContentLoaded', function() {
     const contactBtn = document.querySelector('.contact-btn');
 
     // Check if required navigation elements exist
-    if (!hamburgerBtn || !navOverlay || !navOverlayClose) {
+    if (!hamburgerBtn) {
+        console.error('Nav Error: .hamburger-btn not found');
         return;
+    }
+    if (!navOverlay) {
+        console.error('Nav Error: #navOverlay not found');
+        return;
+    }
+    if (!navOverlayClose) {
+        console.error('Nav Error: #navOverlayClose not found');
+        return;
+    }
+    if (!navOverlayLinks.length) {
+        console.error('Nav Error: .nav-overlay__link not found');
     }
 
     function openNavOverlay() {
@@ -137,4 +149,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }
+    
+    // Log successful nav script initialization
+    console.log('Nav overlay script initialized successfully.');
 }); 
