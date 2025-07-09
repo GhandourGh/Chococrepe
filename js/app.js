@@ -5,6 +5,68 @@ const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
 const menuSections = document.getElementById('menuSections');
 
+// Image optimization utilities
+function supportsWebP() {
+  const elem = document.createElement('canvas');
+  return elem.getContext && elem.getContext('2d') ? 
+    elem.toDataURL('image/webp').indexOf('data:image/webp') === 0 : false;
+}
+
+function getOptimizedImageUrl(imagePath, width = 400, quality = 80) {
+  if (!imagePath) return '';
+  
+  const format = supportsWebP() ? 'webp' : 'jpeg';
+  const transformations = `width=${width}&quality=${quality}&format=${format}`;
+  
+  return `${SUPABASE_URL}/storage/v1/object/public/menu-images/${imagePath}?${transformations}`;
+}
+
+function getPlaceholderUrl(imagePath) {
+  if (!imagePath) return '';
+  
+  // Generate a very low quality, small placeholder
+  return `${SUPABASE_URL}/storage/v1/object/public/menu-images/${imagePath}?width=50&quality=30&format=jpeg`;
+}
+
+// Progressive image loading
+function createProgressiveImage(originalSrc, placeholderSrc, alt) {
+  const container = document.createElement('div');
+  container.className = 'progressive-image-container';
+  
+  // Create placeholder image
+  const placeholder = document.createElement('img');
+  placeholder.src = placeholderSrc;
+  placeholder.alt = alt;
+  placeholder.className = 'progressive-image-placeholder';
+  container.appendChild(placeholder);
+  
+  // Create full quality image
+  const fullImage = document.createElement('img');
+  fullImage.alt = alt;
+  fullImage.className = 'progressive-image-full';
+  
+  // Load full image when placeholder is ready
+  placeholder.onload = function() {
+    fullImage.src = originalSrc;
+  };
+  
+  fullImage.onload = function() {
+    fullImage.style.opacity = '1';
+    placeholder.style.opacity = '0';
+  };
+  
+  container.appendChild(fullImage);
+  return container;
+}
+
+// Image preloading for critical menu items
+function preloadCriticalImages(imageUrls) {
+  imageUrls.forEach(url => {
+    const img = new Image();
+    img.src = url;
+  });
+}
+
 // Always define fetchMenuItems so it is available globally
 async function fetchMenuItems() {
   const { data, error } = await supabase
@@ -44,12 +106,18 @@ const CATEGORY_MAP = {
 };
 
 function getImageUrl(imagePath) {
-  if (!imagePath) return '';
-  return `${SUPABASE_URL}/storage/v1/object/public/menu-images/${imagePath}`;
+  return getOptimizedImageUrl(imagePath);
 }
 
 function renderMenu(items, filterCategory = null) {
   menuSections.innerHTML = '';
+  
+  // Preload critical images for instant loading
+  const criticalImages = items.slice(0, 8).map(item => 
+    getOptimizedImageUrl(item.image_path)
+  );
+  preloadCriticalImages(criticalImages);
+  
   // Group by category and subcategory (do NOT filter here)
   const grouped = {};
   items.forEach(item => {
@@ -59,6 +127,7 @@ function renderMenu(items, filterCategory = null) {
     if (!grouped[catKey][subcat]) grouped[catKey][subcat] = [];
     grouped[catKey][subcat].push(item);
   });
+  
   Object.entries(CATEGORY_MAP).forEach(([catKey, catLabel]) => {
     // Always create the section, even if there are no items
     const section = document.createElement('section');
@@ -73,6 +142,7 @@ function renderMenu(items, filterCategory = null) {
           </svg>
         </button>
       </div>`;
+    
     if (grouped[catKey]) {
       Object.entries(grouped[catKey]).forEach(([subcat, items], subIdx) => {
         let subcatId = `${catKey}-subcat-${subIdx}`;
@@ -81,24 +151,39 @@ function renderMenu(items, filterCategory = null) {
           subcatToggle = `<button class="menu-subsection__toggle" aria-label="Toggle ${subcat}"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>`;
           section.innerHTML += `<div class="menu-subsection closed" id="${subcatId}" style="display:none;"><div class="menu-subsection__header"><h3 class="menu-subsection__title">${subcat}</h3>${subcatToggle}</div>`;
         }
+        
         const itemsDiv = document.createElement('div');
         itemsDiv.className = 'menu-items';
+        
         items.forEach(item => {
-          itemsDiv.innerHTML += `
-            <article class="menu-item">
-              <img src="${getImageUrl(item.image_path)}" alt="${item.name}" class="menu-item__image" loading="lazy">
-              <div class="menu-item__content">
-                <div class="menu-item__header">
-                  <h3 class="menu-item__name">${item.name}</h3>
-                </div>
-                <p class="menu-item__description">${item.description || ''}</p>
-                <div class="menu-item__footer">
-                  <span class="menu-item__price">$${item.price.toFixed(2)}</span>
-                </div>
-              </div>
-            </article>
+          const menuItem = document.createElement('article');
+          menuItem.className = 'menu-item';
+          
+          // Create progressive image container
+          const imageContainer = createProgressiveImage(
+            getOptimizedImageUrl(item.image_path),
+            getPlaceholderUrl(item.image_path),
+            item.name
+          );
+          imageContainer.className = 'menu-item__image-container';
+          
+          const content = document.createElement('div');
+          content.className = 'menu-item__content';
+          content.innerHTML = `
+            <div class="menu-item__header">
+              <h3 class="menu-item__name">${item.name}</h3>
+            </div>
+            <p class="menu-item__description">${item.description || ''}</p>
+            <div class="menu-item__footer">
+              <span class="menu-item__price">$${item.price.toFixed(2)}</span>
+            </div>
           `;
+          
+          menuItem.appendChild(imageContainer);
+          menuItem.appendChild(content);
+          itemsDiv.appendChild(menuItem);
         });
+        
         if (catKey === 'drinks' && subcat !== 'Other') {
           section.innerHTML += `</div>`; // close menu-subsection__header
           section.appendChild(itemsDiv);
@@ -116,6 +201,7 @@ function renderMenu(items, filterCategory = null) {
     }
     menuSections.appendChild(section);
   });
+  
   // Attach modal logic to new menu items
   setupMenuItemModal();
   // Ensure dropdown toggles are functional after render
