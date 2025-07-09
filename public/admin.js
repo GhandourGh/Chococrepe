@@ -137,7 +137,7 @@ async function addMenuItem(event) {
     const subcategory = document.getElementById('subcategorySelect').value || null;
     const imageFile = document.getElementById('itemImage').files[0];
     
-    if (!name || !description || !price || !category) {
+    if (!name || !price || !category) {
         showMessage('Please fill in all required fields');
         return;
     }
