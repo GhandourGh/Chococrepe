@@ -81,7 +81,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     }
                 } else {
                     // If we're on another page, go to main page and scroll to contact
-                    window.location.href = 'index.html#contact';
+                    window.location.href = '/index.html#contact';
                 }
             } else if (nav === 'cart') {
                 // Use the global cart function if available

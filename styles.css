@@ -1,3 +1,56 @@
+/* CSS Reset for consistent rendering across all environments */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    line-height: 1.15;
+    -webkit-text-size-adjust: 100%;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+}
+
+body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+img, video, canvas, svg {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+button, input, textarea, select {
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+}
+
+button {
+    border: none;
+    background: none;
+    cursor: pointer;
+    padding: 0;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+ul, ol {
+    list-style: none;
+}
+
 /* CSS Variables based on JSON configuration */
 :root {
     --bg: #CFA386;
@@ -867,47 +920,57 @@ body {
 
 }
 
+/* --- HERO FULL PAGE CLEANUP --- */
 .hero {
-    position: relative;
-    height: 70vh;
-    width: 100%;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: clamp(16px, 4vw, 40px);
-    margin-top: var(--headerHeight);
-    overflow: hidden;
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
 }
-
+.hero-image-container {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  overflow: hidden;
+}
+.hero-image-container img,
+.hero-image,
+.hero-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
 .hero-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(
-        135deg,
-        rgba(30, 25, 21, 0.7) 0%,
-        rgba(30, 25, 21, 0.4) 50%,
-        rgba(30, 25, 21, 0.8) 100%
-    );
-    z-index: 1;
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(20,20,20,0.7) 0%, rgba(20,20,20,0.4) 50%, rgba(20,20,20,0.8) 100%);
+  z-index: 2;
 }
-
 .hero-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    position: relative;
-    z-index: 2;
-    text-align: center;
-    max-width: clamp(300px, 80vw, 800px);
-    width: 100%;
-    gap: 10px;
+  position: relative;
+  z-index: 3;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: clamp(24px, 6vw, 64px) clamp(16px, 4vw, 48px);
+  text-align: center;
+  color: #fff;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
+.category-nav {
+  margin-top: 32px;
+}
+/* --- END HERO FULL PAGE CLEANUP --- */
 
 .hero-title {
     font-family: 'Plus Jakarta Sans', sans-serif;
@@ -1856,7 +1919,8 @@ body {
   flex-direction: column;
   align-items: center;
   gap: 24px;
-  padding: 48px 0 32px 0;
+  padding: clamp(48px, 12vh, 96px) 0 32px 0;
+  margin-top: 440px;
 }
 .nav-overlay__logo {
   width: 150px;
@@ -2559,7 +2623,7 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: 2;
+    z-index: 1;
 }
 .hero-content {
     position: absolute;
@@ -2577,5 +2641,219 @@ body {
     .hero-content {
         padding: 0 1rem;
     }
+}
+
+/* --- HERO SOCIAL PROOF COMBO --- */
+.hero-social-proof {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.5em;
+  background: rgba(20, 50, 28, 0.10);
+  color: #14321c;
+  font-weight: 600;
+  font-size: 1rem;
+  border-radius: 999px;
+  padding: 7px 22px;
+  margin-bottom: 18px;
+  margin-top: 18px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  letter-spacing: 0.01em;
+  opacity: 0;
+  animation: fadeInUp 1s ease-out 0.5s forwards;
+}
+.hero-social-proof__item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25em;
+}
+.hero-social-proof__icon {
+  color: #e2b04a;
+  font-size: 1.1em;
+  margin-right: 2px;
+  vertical-align: middle;
+}
+.hero-social-proof__dot {
+  color: #bfae9c;
+  font-size: 1.2em;
+  margin: 0 0.4em;
+}
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  border: 0;
+}
+/* --- END HERO SOCIAL PROOF COMBO --- */
+
+.hero-social-proof {
+  color: #fff;
+}
+.hero-social-proof__icon {
+  color: #fff;
+}
+.hero-social-proof__dot {
+  color: #fff;
+}
+
+.hero-social-proof {
+  justify-content: center;
+}
+.hero-social-proof__item--right {
+  margin-left: 0;
+}
+.hero-social-proof__item--right a {
+  display: inline-flex;
+  align-items: center;
+  color: #fff;
+  margin-right: 4px;
+  transition: opacity 0.2s;
+}
+.hero-social-proof__item--right a:hover {
+  opacity: 0.7;
+}
+
+/* --- Admin Dashboard Styles --- */
+.admin-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 40px;
+  margin-bottom: 24px;
+}
+.admin-logo {
+  width: 180px;
+  height: auto;
+  margin-bottom: 12px;
+}
+.admin-title {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+  color: #000;
+  letter-spacing: 0.02em;
+}
+.logout-btn {
+  background: #fff;
+  color: #111;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 6px 18px;
+  font-size: 1rem;
+  margin-top: 8px;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+.logout-btn:hover {
+  background: #f5f5f5;
+  color: #000;
+}
+.admin-section {
+  max-width: 480px;
+  margin: 0 auto 32px auto;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.04);
+  padding: 32px 24px;
+  color: #000;
+}
+.admin-form h2 {
+  font-size: 1.3rem;
+  margin-bottom: 18px;
+  color: #000;
+}
+.admin-form input,
+.admin-form textarea,
+.admin-form select {
+  width: 100%;
+  padding: 10px 12px;
+  margin-bottom: 14px;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  font-size: 1rem;
+  background: #fafafa;
+  color: #000;
+  transition: border 0.2s;
+}
+.admin-form input:focus,
+.admin-form textarea:focus,
+.admin-form select:focus {
+  border-color: #b88b6a;
+  outline: none;
+  color: #000;
+}
+.admin-form button[type="submit"] {
+  width: 100%;
+  background: #b88b6a;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 10px 0;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.admin-form button[type="submit"]:hover {
+  background: #a06e4a;
+}
+.password-field {
+  display: flex;
+  align-items: center;
+}
+.password-toggle {
+  background: none;
+  border: none;
+  margin-left: -36px;
+  cursor: pointer;
+  color: #b88b6a;
+  font-size: 1.2em;
+}
+.admin-table-controls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 18px 0 10px 0;
+  color: #000;
+}
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 18px;
+  background: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+  font-size: 0.98rem;
+  color: #000;
+}
+.admin-table th, .admin-table td {
+  padding: 10px 8px;
+  border-bottom: 1px solid #f0f0f0;
+  text-align: left;
+  color: #000;
+}
+.admin-table th {
+  background: #fafafa;
+  color: #000;
+  font-weight: 600;
+}
+.admin-table tr:last-child td {
+  border-bottom: none;
+}
+@media (max-width: 600px) {
+  .admin-section {
+    padding: 18px 6px;
+  }
+  .admin-header {
+    margin-top: 18px;
+  }
+  .admin-logo {
+    width: 120px;
+  }
 }
 

@@ -243,6 +243,13 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
+// Ensure all hero videos are set to loop
+window.addEventListener('DOMContentLoaded', function() {
+  document.querySelectorAll('.hero-video').forEach(video => {
+    video.loop = true;
+  });
+});
+
 // --- CART STATE ---
 let cart = JSON.parse(localStorage.getItem('chocoCart')) || [];
 

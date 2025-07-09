@@ -2,13 +2,23 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="theme-color" content="#000000">
     <title>Choco's - Indulge in Sweetness</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.39.7/dist/umd/supabase.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&family=Noto+Sans:wght@400;500;700;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.min.css">
+    
+    <!-- Preload critical assets -->
+    <link rel="preload" href="images/logo.png" as="image" type="image/png">
+    <link rel="preload" href="images/video.mp4" as="video" type="video/mp4">
+    <link rel="preload" href="images/rest.png" as="image" type="image/png">
+    <link rel="preload" href="images/video2.mp4" as="video" type="video/mp4">
+    <link rel="preload" href="images/video3.mp4" as="video" type="video/mp4">
     
 
 </head>
@@ -22,7 +32,7 @@
         </button>
         
         <div class="logo-container">
-            <img src="images/logo.png" alt="Choco's Logo" class="logo">
+            <img src="images/logo.png" alt="Choco's Logo" class="logo" loading="eager">
         </div>
         
         <div class="header-controls">
@@ -47,9 +57,9 @@
     <!-- Option 1: Video Carousel (Current Implementation) -->
     <section id="hero" class="hero">
         <div class="hero-video-container">
-            <video class="hero-video active" src="images/video.mp4" autoplay muted loop playsinline poster="images/rest.png"></video>
-            <video class="hero-video" src="images/video2.mp4" autoplay muted loop playsinline poster="images/rest.png"></video>
-            <video class="hero-video" src="images/video3.mp4" autoplay muted loop playsinline poster="images/rest.png"></video>
+            <video class="hero-video active" src="images/video.mp4" autoplay muted loop playsinline poster="images/rest.png" preload="metadata"></video>
+            <video class="hero-video" src="images/video2.mp4" autoplay muted loop playsinline poster="images/rest.png" preload="metadata"></video>
+            <video class="hero-video" src="images/video3.mp4" autoplay muted loop playsinline poster="images/rest.png" preload="metadata"></video>
             
 
             
@@ -59,6 +69,25 @@
         <div class="hero-content">
             <h1 class="hero-title">UNFORGETTABLE TASTE</h1>
             <p class="hero-subtitle">Get ready for a flavor explosion <br><span class="hero-subtitle-highlight">Our menu is a delightful fusion of Belgian and Lebanese flavors, offering you a unique culinary adventure.</span></p>
+            <div class="hero-social-proof">
+              <span class="hero-social-proof__item">
+                <span class="hero-social-proof__icon">★</span>
+                <strong>4.5/5</strong> on Google
+              </span>
+              <span class="hero-social-proof__item">
+                Loved by <strong>10,000+</strong> customers
+              </span>
+              <span class="hero-social-proof__item hero-social-proof__item--right">
+                <span>As seen on</span>
+                <a href="https://www.instagram.com/choco.crepe/" target="_blank" rel="noopener" aria-label="Instagram">
+                  <svg class="hero-social-proof__icon" width="18" height="18" viewBox="0 0 24 24" fill="none"><rect width="18" height="18" x="3" y="3" rx="5" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="2"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
+                </a>
+                <a href="https://www.tiktok.com/@chococrepe2" target="_blank" rel="noopener" aria-label="TikTok">
+                  <svg class="hero-social-proof__icon" width="18" height="18" fill="none" viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-.88-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z" fill="currentColor"/></svg>
+                </a>
+                <span class="sr-only">Instagram & TikTok</span>
+              </span>
+            </div>
             <div class="hero-actions">
                 <button class="menu-btn" aria-label="View our menu">
                     <span class="menu-btn-text">View Menu</span>
@@ -155,7 +184,7 @@
         <div class="menu-modal__overlay"></div>
         <div class="menu-modal__content" role="document">
             <button class="menu-modal__close" aria-label="Close">&times;</button>
-            <img class="menu-modal__image" src="" alt="" />
+            <img class="menu-modal__image" src="" alt="" loading="lazy" />
             <h2 class="menu-modal__name"></h2>
             <p class="menu-modal__description"></p>
             <div class="menu-modal__price"></div>
@@ -182,7 +211,7 @@
 
     <footer class="choco-footer" id="contact">
       <div class="choco-footer__content">
-        <img src="images/logo.png" alt="Choco's Logo" class="choco-footer__logo" />
+        <img src="images/logo.png" alt="Choco's Logo" class="choco-footer__logo" loading="lazy" />
         <div class="choco-footer__copyright">© 2025 Choco Crepe. All rights reserved.</div>
         <div class="choco-footer__social">
           <a href="https://tiktok.com/@yourpage" class="choco-footer__social-icon" aria-label="TikTok" target="_blank" rel="noopener">
@@ -230,7 +259,7 @@
     <div id="navOverlay" class="nav-overlay" style="display:none;">
       <button class="nav-overlay__close" id="navOverlayClose" aria-label="Close menu">&times;</button>
       <div class="nav-overlay__content">
-                  <img src="images/logo.png" alt="Choco's Logo" class="nav-overlay__logo" />
+                  <img src="images/logo.png" alt="Choco's Logo" class="nav-overlay__logo" loading="lazy" />
           <div class="nav-overlay__social">
             <a href="https://www.tiktok.com/@chococrepe2" class="nav-overlay__social-icon" aria-label="TikTok" target="_blank" rel="noopener">
               <svg width="28" height="28" fill="none" viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-.88-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z" fill="currentColor"/></svg>
@@ -282,8 +311,8 @@
       </div>
     </div>
 
-    <script src="js/app.js"></script>
-    <script src="js/nav.js"></script>
-    <script src="js/cart.js"></script>
+    <script src="js/app.min.js" defer></script>
+    <script src="js/nav.min.js" defer></script>
+    <script src="js/cart.min.js" defer></script>
 </body>
 </html> 
